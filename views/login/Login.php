@@ -62,7 +62,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                  $_SESSION["username"] = $username;                            
                                  
                                  // Redirect user to welcome page
-                                 header("location: Docente.php");
+                                 header('location: \polidynamics\views\docente\Index.php');
                             }else if($perfil ==2){
                                  // Password is correct, so start a new session
                                  session_start();
@@ -74,7 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                  $_SESSION["username"] = $username;                            
                                  
                                  // Redirect user to welcome page
-                                 header("location: Administrador.php");
+                                 header('location: \polidynamics\views\administrador\Index.php');
                             }else{
                                 echo "Ha ocurrido un error con tu usuario, por favor verifica";
                             }                     
@@ -131,7 +131,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Ingresar">
             </div>
-            <p>¿No tienes una cuenta? <a href="register.php">Regístrate ahora</a>.</p>
+            <p>¿No tienes una cuenta? <a href="\polidynamics\views\usuarios\RegistroUsuarios.php">Regístrate ahora</a>.</p>
         </form>
     </div>    
 </body>
