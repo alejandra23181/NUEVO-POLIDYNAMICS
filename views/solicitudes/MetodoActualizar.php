@@ -9,11 +9,10 @@
     $aula =  $_GET['aula'];
     $estado =  $_GET['estado'];
 
-    if($descripcion!=null|| $fecha!=null|| $hora!=null|| $categoria!=null|| $aula!=null|| $estado!=null){
-        $Query = "UPDATE SOLICITUD SET ID_SOLICITUD= '".$id."', DESCRIPCION = '".$descripcion."', FECHA_CREACION = '".$fecha."',
-        HORA = '".$hora."', CATEGORIA = '".$categoria."', AULA = '".$aula."', ESTADO = '".$estado."' WHERE ID_SOLICITUD= '".$id."'";
+    $Query = "UPDATE SOLICITUD SET  DESCRIPCION = '".$descripcion."', FECHA_CREACION = '".$fecha."',
+    HORA = '".$hora."', CATEGORIA = '".$categoria."' WHERE ID_SOLICITUD= '".$id."'";
 
-        mysqli_query($link, $Query); 
-        header('location: ListarSolicitud.php');
-    }
+    mysqli_query($link, $Query); 
+    header('location: ListarSolicitud.php');
+    
 ?>

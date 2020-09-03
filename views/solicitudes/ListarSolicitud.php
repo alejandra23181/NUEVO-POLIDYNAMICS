@@ -4,6 +4,17 @@ session_start();
 
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PoliDynamics</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <link rel="icon" href="/PoliDynamics/style/image/IconoPoli.png" />
+    <link rel="stylesheet" href="style/PerfilDocente.css" type="text/css" >
+</head>
+<body>
+
 <div class="page-header">
         <h1>Hola, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Bienvenid@ a nuestro sitio.</h1>
         
@@ -23,18 +34,18 @@ session_start();
 
 
 <div>
-	<a href="NuevaSolicitud.php">Nuevo</a>
-	<table>
+<button type="button" class="btn btn-warning"><a href="NuevaSolicitud.php">Nuevo</a></button>
+	<table class="table">
 		<thead>
 			<tr>
-				<th>Id. solicitud</th>
-				<th>Descripción de la solicitud</th>
-				<th>Fecha de creación</th>
-				<th>Hora</th>
-				<th>Usuario</th>
-				<th>Categoria</th>
-				<th>Aula</th>
-				<th>Estado</th>
+				<th scope="col">Id. solicitud</th>
+				<th scope="col">Descripción de la solicitud</th>
+				<th scope="col">Fecha de creación</th>
+				<th scope="col">Hora</th>
+				<th scope="col">Usuario</th>
+				<th scope="col">Categoria</th>
+				<th scope="col">Aula</th>
+				<th scope="col">Estado</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -42,7 +53,7 @@ session_start();
 
 			?>
 			<tr>
-				<td><?php echo $Filas['ID_SOLICITUD'] ?></td>
+				<th scope="row"><?php echo $Filas['ID_SOLICITUD'] ?></th>
 				<td><?php echo $Filas['DESCRIPCION'] ?></td>
 				<td><?php echo $Filas['FECHA_CREACION'] ?></td>
 				<td><?php echo $Filas['HORA'] ?></td>
@@ -51,8 +62,8 @@ session_start();
 				<td><?php echo $Filas['NUMERO_AULA'] ?></td>
 				<td><?php echo $Filas['DESCRIPCION_ESTADO'] ?></td>
 				<td>
-					<a href="ModificarSolicitud.php?ID_SOLICITUD=<?php echo $Filas['ID_SOLICITUD'] ?>">Editar</a>
-					<a href="MetodoEliminar.php?ID_SOLICITUD=<?php echo $Filas['ID_SOLICITUD'] ?>"">Eliminar</a>				
+					<button type="button" class="btn btn-primary"><a href="ModificarSolicitud.php?ID_SOLICITUD=<?php echo $Filas['ID_SOLICITUD'] ?>">Editar</a></button>
+					<button type="button" class="btn btn-danger"><a href="MetodoEliminar.php?ID_SOLICITUD=<?php echo $Filas['ID_SOLICITUD'] ?>"">Eliminar</a></button>			
 				</td>
 			</tr>
 			<?php } ?>
@@ -60,3 +71,5 @@ session_start();
 	</table>
 
 </div>
+</body>
+</html>
