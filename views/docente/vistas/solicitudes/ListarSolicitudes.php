@@ -27,7 +27,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <title>PoliDynamics</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="icon" href="/PoliDynamics/style/image/IconoPoli.png" />
-    <link rel="stylesheet" href="../style/General.css" type="text/css" >
+    <link rel="stylesheet" href="/PoliDynamics/views/docente/style/General.css" type="text/css" >
 </head>
 <body>
 
@@ -37,14 +37,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   <nav class="menu">
   <div id="sidebar-nav">   
     <ul id="Secciones">
-    <li ><a href="../Index.php"> Home</a></li>
+    <li ><a href="/PoliDynamics/views/docente/Index.php"> Home</a></li>
       <li class="active"><a href="ListarSolicitudes.php"> Gestión de solicitudes</a></li>
-      <li ><a href="ListarTareas.php"> Seguimiento de solicitudes</a></li>
+      <li ><a href="../ListarTareas.php"> Seguimiento de solicitudes</a></li>
       <li><a href="#"> Gestión de prestamos</a></li>
-      <li><a href="ListarDisponibilidad.php"> Disponibilidad</a></li>
-      <li><a href="ListarAuditoria.php"> Auditoria</a></li>
-      <li><a href="ListarReportes.php"> Reportes</a></li>
-      <li><a href="ManualUsuario.php"> Manual de usuario</a></li>     
+      <li><a href="../ListarDisponibilidad.php"> Disponibilidad</a></li>
+      <li><a href="../ListarAuditoria.php"> Auditoria</a></li>
+      <li><a href="../ListarReportes.php"> Reportes</a></li>
+      <li><a href="../ManualUsuario.php"> Manual de usuario</a></li>     
       <li><a href="/polidynamics/views/login/Login.php"> Cerrar sesión</a></li>
       
     </ul>
@@ -74,7 +74,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
   <h1>GESTIÓN DE SOLICITUDES</h1>
 
-  <button type="button" class="btn btn-warning"><a href="NuevaSolicitud.php">Nuevo</a></button>
+  <button type="button" class="btn btn-warning" style="background-color: #F1C40F;border-color: #F1C40F;"><a href="CrearSolicitudes.php">Nueva solicitud</a></button>
   
 	<table class="table table-bordered">
 		<thead>
@@ -102,8 +102,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				<td><?php echo $Filas['DESCRIPCION_CATEGORIA'] ?></td>
 				<td><?php echo $Filas['NUMERO_AULA'] ?></td>
 				<td>
-					<button type="button" class="btn btn-primary"><a href="ModificarSolicitud.php?ID_SOLICITUD=<?php echo $Filas['ID_SOLICITUD'] ?>">Modificar</a></button>
-					<button type="button" class="btn btn-danger"><a href="MetodoEliminar.php?ID_SOLICITUD=<?php echo $Filas['ID_SOLICITUD'] ?>"">Desactivar</a></button>			
+					<button type="button" class="btn btn-primary" ><a href="EditarSolicitudes.php?ID_SOLICITUD=<?php echo $Filas['ID_SOLICITUD'] ?>">Modificar</a></button>
+					<button type="button" class="btn btn-danger" ><a href="metodos/MetodoEliminar.php?ID_SOLICITUD=<?php echo $Filas['ID_SOLICITUD'] ?>">Desactivar</a></button>			
 				</td>
 			</tr>
 			<?php } ?>

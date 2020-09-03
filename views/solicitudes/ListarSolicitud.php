@@ -34,7 +34,7 @@ session_start();
 
 
 <div>
-<button type="button" class="btn btn-warning"><a href="NuevaSolicitud.php">Nuevo</a></button>
+<a href="NuevaSolicitud.php">Nuevo</a>
 	<table class="table">
 		<thead>
 			<tr>

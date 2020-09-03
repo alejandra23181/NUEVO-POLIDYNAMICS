@@ -16,7 +16,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <title>PoliDynamics</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="icon" href="/PoliDynamics/style/image/IconoPoli.png" />
-    <link rel="stylesheet" href="../style/General.css" type="text/css" >
+    <link rel="stylesheet" href="../style/Reportes.css" type="text/css" >
 </head>
 <body>
 
@@ -27,7 +27,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   <div id="sidebar-nav">   
     <ul id="Secciones">
       <li ><a href="../Index.php"> Home</a></li>
-      <li><a href="ListarSolicitudes.php"> Gestión de solicitudes</a></li>
+      <li><a href="solicitudes/ListarSolicitudes.php"> Gestión de solicitudes</a></li>
       <li><a href="ListarTareas.php"> Seguimiento de solicitudes</a></li>
       <li><a href="#"> Gestión de prestamos</a></li>
       <li><a href="ListarDisponibilidad.php"> Disponibilidad</a></li>
@@ -61,33 +61,40 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </div>
   </div>
 
-  <h1>DISPONIBILIDAD DE AULAS</h1>
+  <h1>REPORTES Y ESTADÍSTICAS</h1>
   <br>
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-                <th scope="col">Bloque</th>
-				<th scope="col">Número de aula</th>
-				<th scope="col">Estado del aula</th>
+        <th scope="col">Nombre del reporte</th>
 			</tr>
 		</thead>
 		<tbody>
-			<?php while($Filas = $Resultado->fetch_assoc()) {	
-
-			?>
 			<tr>
-				<td style="text-align: center;"><?php echo $Filas['BLOQUE'] ?></td>
-				<td style="text-align: center;"><?php echo $Filas['NUMERO_AULA'] ?></td>
-                <?php
-                 if($Filas['DISPONIBILIDAD'] == 1){
-                    echo '<td style="color:#196F3D;text-transform: uppercase;text-align: center;"><strong>'.$Filas['DESCRIPCION'].'</strong></td>';
-                 }else{
-                    echo '<td style="color:#D12B2B;text-transform: uppercase;text-align: center;"><strong>'.$Filas['DESCRIPCION'].'</strong></td>';
-                 }
-                 
-                 ?>
-			</tr>
-			<?php } ?>
+				<td style="text-align: center;">Número de solucitudes realizadas en vida útil de la plataforma</td>
+				<td style="width: 10px;"><button type="button" class="btn btn-danger">PDF</button></td>
+      </tr>
+      
+      <tr>
+				<td style="text-align: center;">Número de solucitudes reportadas y solucionadas</td>
+				<td style="width: 10px;"><button type="button" class="btn btn-danger">PDF</button></td>
+      </tr>
+      
+      <tr>
+				<td style="text-align: center;">Número de solucitudes reportadas por sala</td>
+				<td style="width: 10px;"><button type="button" class="btn btn-danger">PDF</button></td>
+      </tr>
+
+      <tr>
+				<td style="text-align: center;">Reportes de movientos realizados en vida útil de la plataforma</td>
+				<td style="width: 10px;"><button type="button" class="btn btn-danger">PDF</button></td>
+      </tr>
+
+      <tr>
+				<td style="text-align: center;">Reportes de cada solucitud creada</td>
+				<td style="width: 10px;"><button type="button" class="btn btn-danger">PDF</button></td>
+      </tr>
+      
 		</tbody>
 	</table>
   

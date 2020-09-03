@@ -38,7 +38,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   <div id="sidebar-nav">   
     <ul id="Secciones">
     <li ><a href="../Index.php"> Home</a></li>
-      <li><a href="ListarSolicitudes.php"> Gestión de solicitudes</a></li>
+      <li><a href="solicitudes/ListarSolicitudes.php"> Gestión de solicitudes</a></li>
       <li class="active"><a href="ListarTareas.php"> Seguimiento de solicitudes</a></li>
       <li><a href="#"> Gestión de prestamos</a></li>
       <li><a href="ListarDisponibilidad.php"> Disponibilidad</a></li>
