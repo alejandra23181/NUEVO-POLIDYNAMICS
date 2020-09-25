@@ -4,5 +4,5 @@
 
     $Query = "DELETE FROM SOLICITUD WHERE ID_SOLICITUD = '".$id."'";
     mysqli_query($link, $Query);  
-    header('location: ListarSolicitud.php');
+    header('location: ../ListarSolicitudes.php');
 ?>

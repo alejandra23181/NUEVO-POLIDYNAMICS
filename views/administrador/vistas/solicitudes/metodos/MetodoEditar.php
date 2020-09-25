@@ -10,7 +10,7 @@
     $estado =  $_GET['estado'];
 
     $Query = "UPDATE SOLICITUD SET  DESCRIPCION = '".$descripcion."', FECHA_CREACION = '".$fecha."',
-    HORA = '".$hora."', CATEGORIA = '".$categoria."' WHERE ID_SOLICITUD= '".$id."'";
+    HORA = '".$hora."', ESTADO = '".$estado."' WHERE ID_SOLICITUD= '".$id."'";
 
     mysqli_query($link, $Query); 
     header('location: ../ListarSolicitudes.php');

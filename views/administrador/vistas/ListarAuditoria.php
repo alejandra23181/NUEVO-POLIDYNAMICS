@@ -8,6 +8,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 ?>
+
+<?php 
+    include('C:\xampp\htdocs\polidynamics\database\db.php');    
+    $Query = "SELECT * FROM AUDITORIA AU
+    INNER JOIN USUARIO US ON AU.USUARIO = US.ID_USUARIO 
+    WHERE username = '".$_SESSION['username']."' ";
+	$Resultado = mysqli_query($link, $Query);
+?>
  
 <!DOCTYPE html>
 <html lang="en">
@@ -16,16 +24,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <title>PoliDynamics</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="icon" href="/PoliDynamics/style/image/IconoPoli.png" />
-    <link rel="stylesheet" href="style/General.css" type="text/css" >
+    <link rel="stylesheet" href="/PoliDynamics/views/administrador/style/General.css" type="text/css" >
 </head>
 <body>
 
-  <section id="sidebar"> 
-  <div class="white-label">
-  </div> 
+    <section id="sidebar"> 
+    <div class="white-label">
+    </div> 
+  <nav class="menu">
   <div id="sidebar-nav">   
-    <ul>
-      <li class="active"><a href="#"> Home</a></li>
+    <ul id="Secciones">
+    <li class="active"><a href="#"> Home</a></li>
       <li><a href="#"> Gestión de tareas</a></li>
       <li><a href="#"> Gestión de prestamos</a></li>
       <li><a href="#"> Gestión de disponibilidad</a></li>
@@ -39,10 +48,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
       <li><a href="/polidynamics/views/login/Login.php"> Cerrar sesión</a></li>
       
     </ul>
+
   </div>
-  </section>
-  <section id="content">
-  <div id="header">
+</nav>
+    </section>
+
+   
+    <section id="content">
+
+    <div id="header">
     <div class="header-nav">
 
       <div class="nav">
@@ -58,11 +72,34 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </div>
   </div>
 
-    
-  <div class="content">
-    
-  </div>
-</section>
+  <h1>SEGUIMIENTO DE MOVIMIENTOS REALIZADOS</h1>
+  <br>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th scope="col">Usuario</th>
+				<th scope="col">Fecha de movimiento</th>
+				<th scope="col">Movimiento realizado</th>
+                <th scope="col">Detalle de movimiento</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php while($Filas = $Resultado->fetch_assoc()) {	
+
+			?>
+			<tr>
+				<th scope="row"><?php echo $Filas['username'] ?></th>
+				<td><?php echo $Filas['FECHA'] ?></td>
+				<td><?php echo $Filas['OPERACION'] ?></td>
+				<td><?php echo $Filas['DESCRIPCION'] ?></td>
+			</tr>
+			<?php } ?>
+		</tbody>
+	</table>
+  
+      
+  </section>
+
 
 </body>
 </html>

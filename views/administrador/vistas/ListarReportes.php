@@ -8,7 +8,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 ?>
- 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,16 +16,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <title>PoliDynamics</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="icon" href="/PoliDynamics/style/image/IconoPoli.png" />
-    <link rel="stylesheet" href="style/General.css" type="text/css" >
+    <link rel="stylesheet" href="/PoliDynamics/views/administrador/style/General.css" type="text/css" >
 </head>
 <body>
 
-  <section id="sidebar"> 
-  <div class="white-label">
-  </div> 
+    <section id="sidebar"> 
+    <div class="white-label">
+    </div> 
+  <nav class="menu">
   <div id="sidebar-nav">   
-    <ul>
-      <li class="active"><a href="#"> Home</a></li>
+    <ul id="Secciones">
+    <li class="active"><a href="#"> Home</a></li>
       <li><a href="#"> Gestión de tareas</a></li>
       <li><a href="#"> Gestión de prestamos</a></li>
       <li><a href="#"> Gestión de disponibilidad</a></li>
@@ -39,10 +40,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
       <li><a href="/polidynamics/views/login/Login.php"> Cerrar sesión</a></li>
       
     </ul>
+
   </div>
-  </section>
-  <section id="content">
-  <div id="header">
+</nav>
+    </section>
+
+   
+    <section id="content">
+
+    <div id="header">
     <div class="header-nav">
 
       <div class="nav">
@@ -58,11 +64,47 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </div>
   </div>
 
-    
-  <div class="content">
-    
-  </div>
-</section>
+  <h1>REPORTES Y ESTADÍSTICAS</h1>
+  <br>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+        <th scope="col">Nombre del reporte</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td style="text-align: center;">Número de solucitudes realizadas en vida útil de la plataforma</td>
+				<td style="width: 10px;"><button type="button" class="btn btn-danger">PDF</button></td>
+      </tr>
+      
+      <tr>
+				<td style="text-align: center;">Número de solucitudes reportadas y solucionadas</td>
+				<td style="width: 10px;"><button type="button" class="btn btn-danger">PDF</button></td>
+      </tr>
+      
+      <tr>
+				<td style="text-align: center;">Número de solucitudes reportadas por sala</td>
+				<td style="width: 10px;"><button type="button" class="btn btn-danger">PDF</button></td>
+      </tr>
+
+      <tr>
+				<td style="text-align: center;">Reporte de daños de equipos</td>
+				<td style="width: 10px;"><button type="button" class="btn btn-danger">PDF</button></td>
+      </tr>
+
+      <tr>
+				<td style="text-align: center;">Número de veces que se les hizo mantenimiento y
+revisión a los equipos de cada una de las salas.</td>
+				<td style="width: 10px;"><button type="button" class="btn btn-danger">PDF</button></td>
+      </tr>
+      
+		</tbody>
+	</table>
+  
+      
+  </section>
+
 
 </body>
 </html>

@@ -18,17 +18,17 @@
             VALUES (NULL, '".$descripcion."', '".$fecha."', '".$hora."', '".$usuario."', '".$categoria."', '".$aula."', '".$estado."')";
 
             if (mysqli_query($link,$QuerySQL)){
-                echo "<p>Registro agregado.</p>";
+                header('location: ../ListarSolicitudes.php');
                 mysqli_query($link,"INSERT INTO AUDITORIA (USUARIO, FECHA, TABLA, OPERACION, DESCRIPCION)
                 VALUES ('".$usuario."', NOW(), 'SOLICITUDES', 'INSERTAR', 'SE REALIZO LA INSERCIÓN DE UNA SOLICITUD' )");
                 } else {
-                echo "<p>No se agregó...</p>";
+                    header('location: ../Error.php');
                 }
 
         }else{
-            echo "pailas desde el principio";
+            header('location: ../Error.php');
         }
     }else{
-        echo "pailas desde el principio1";
+        header('location: ../Error.php');
     }
 ?>
