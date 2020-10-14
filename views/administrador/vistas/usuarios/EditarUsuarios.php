@@ -9,17 +9,18 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 ?>
 
-<?php 
+<?php
     include('C:\xampp\htdocs\polidynamics\database\db.php'); 
-    $id = $_GET['ID_TAREA'];   
-    $Query = "SELECT * FROM tarea TA
-    INNER JOIN SOLICITUD SO ON TA.SOLICITUD = SO.ID_SOLICITUD
-    INNER JOIN TIPO_TAREA TP ON TA.TIPO_TAREA = TP.ID_TIPO_TAREA 
-    INNER JOIN USUARIO US ON SO.USUARIO = US.ID_USUARIO
-	INNER JOIN ESTADO ES ON SO.ESTADO = ES.ID_ESTADO WHERE username = '".$_SESSION['username']."' AND ID_TAREA = '".$id."'";
-    $Resultado = mysqli_query($link, $Query);
-    while($Filas = $Resultado->fetch_assoc()) {	
+    $ID_USUARIO = $_GET['ID_USUARIO'];
+    $QuerySQL = "SELECT * FROM USUARIO US
+	INNER JOIN GENERO GE ON US.GENERO = GE.ID_GENERO
+    INNER JOIN TIPO_DOCUMENTO TI ON US.TIPO_DOCUMENTO = TI.ID_TIPO_DOCUMENTO
+    INNER JOIN PERFIL_USUARIO PE ON US.PERFIL = PE.ID_PERFIL WHERE ID_USUARIO = '".$ID_USUARIO."'";
+    
+    $Resultado = mysqli_query($link, $QuerySQL);
+     while($Filas = $Resultado->fetch_assoc()) {	
 ?>
+
  
 <!DOCTYPE html>
 <html lang="en">
@@ -76,59 +77,59 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </div>
   </div>
 
-  <h1>CREACIÓN DE TAREAS</h1>
-  <br>
+  <h1>MODIFICAR USUARIO</h1>
 
   <form  action = "metodos/MetodoEditar.php">
-  <input type="hidden" class="form-control" name="ID_TAREA" value="<?php echo $Filas['ID_TAREA'] ?>" required>
-
         <div class="form-group">
+        <input  type="hidden" name="ID_USUARIO" value="<?php echo $Filas['ID_USUARIO'] ?>">
             <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label>Detalle de reporte:</label><br>   
-                        <input type="text" class="form-control" name="detalle" value="<?php echo $Filas['DETALLE'] ?>" required>
+                        <label>Segundo nombre:</label><br>   
+                        <input type="text" class="form-control" name="SEGUNDO_NOMBRE_USUARIO" value="<?php echo $Filas['SEGUNDO_NOMBRE_USUARIO'] ?>">   
+                    </div>
+           
+                    <div class="col-md-6 mb-3">
+                        <label>Segundo apellido:</label><br>   
+                        <input type="text" name="SEGUNDO_APELLIDO_USUARIO"  class="form-control" value="<?php echo $Filas['SEGUNDO_APELLIDO_USUARIO'] ?>">
+
+                        </div>
+            </div>
+
+                    </div>
+                    <div class="form-group">
+            <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Télefono:</label><br>   
+                        <input type="text" name="TELEFONO"  class="form-control" value="<?php echo $Filas['TELEFONO'] ?>">
+
                     </div>
                     <div class="col-md-6 mb-3">
-                    <label>Recomendaciones:</label><br>   
-                        <input type="textarea" class="form-control" name="recomendaciones" value="<?php echo $Filas['RECOMENDACION'] ?>" required>
+                        <label>Email:</label><br>   
+                        <input type="text" name="EMAIL"  class="form-control" value="<?php echo $Filas['EMAIL'] ?>">
+
+                    </div>
+
+</div>
+</div>
+
+<div class="form-group">
+            <div class="row">
+
+                    <div class="col-md-6 mb-3">
+                        <label>Nombre usuario:</label><br>   
+                        <input type="text" name="username"  class="form-control" value="<?php echo $Filas['username'] ?>">
+
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Clave:</label><br>   
+                        <input type="text" name="password"  class="form-control" value="<?php echo $Filas['password'] ?>">
+
                     </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label>Fecha inicio:</label><br>   
-                        <input type="date" name="fechainicio"  class="form-control" value="<?php echo $Filas['FECHA_INICIO'] ?>" required>
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-                        <label>Hora inicio:</label><br>   
-                        <input type="time" name="horainicio"  class="form-control" value="<?php echo $Filas['HORA_INICIO'] ?>" required>
-                    </div>
             </div>
-        </div>
-
-
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label>Hora fin:</label><br>   
-                    <input type="time" name="horafin"  class="form-control" value="<?php echo $Filas['HORA_FINAL'] ?>"  required>
-                </div>
-
-         
-                
-
-                
-        </div>
-
-
-              
-
-        <button class="btn btn-primary" style="margin-left: 360px;margin-top: 30px;" type="submit"><strong> Actualizar tarea</strong></button>
-
-
+        
+        <button class="btn btn-primary" type="submit"><strong> Crear usuario</strong></button>
+        
     </form>
     <?php } ?>
   </section>

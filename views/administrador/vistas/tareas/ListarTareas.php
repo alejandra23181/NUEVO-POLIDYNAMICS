@@ -77,7 +77,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
   <h1>GESTIÓN DE TAREAS</h1>
 
-  <button type="button" class="btn btn-warning" style="background-color: #F1C40F;border-color: #F1C40F;"><a href="CrearSolicitudes.php">Nueva tarea</a></button>
+  <button type="button" class="btn btn-warning" style="background-color: #F1C40F;border-color: #F1C40F;"><a href="CrearTareas.php">Nueva tarea</a></button>
 
   <br>
 	<table class="table table-bordered">
