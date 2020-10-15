@@ -27,12 +27,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <ul>
       <li class="active"><a href="#"> Home</a></li>
       <li><a href="#"> Gestión de tareas</a></li>
-      <li><a href="#"> Gestión de prestamos</a></li>
+      <li><a href="vistas/prestamo/ListarPrestamos.php"> Gestión de prestamos</a></li>
       <li><a href="#"> Gestión de disponibilidad</a></li>
       <li><a href="#"> Administración de prestamos</a></li>
       <li><a href="#"> Administración de solicitudes</a></li>
       <li><a href="#"> Administración de usuarios</a></li>
-      <li><a href="#"> Administración de inventario</a></li>
+      <li><a href="vistas/inventario/ListarInventario.php"> Administración de inventario</a></li>
       <li><a href="#"> Auditoria</a></li>
       <li><a href="#"> Reportes</a></li>
       <li><a href="#"> Manual de usuario</a></li>     

@@ -11,7 +11,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 <?php
     include('C:\xampp\htdocs\polidynamics\database\db.php');
-    $id = $_GET['ID_SOLICITUD'];
+    $id = $_GET['ID_SOLICITUD'];              
     $QuerySQL = "SELECT * FROM SOLICITUD SO
 	INNER JOIN USUARIO US ON SO.USUARIO = US.ID_USUARIO
 	INNER JOIN CATEGORIA CA ON SO.CATEGORIA = CA.ID_CATEGORIA
