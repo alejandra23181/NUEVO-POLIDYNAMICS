@@ -8,7 +8,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 ?>
- 
+
+<?php 
+    include('C:\xampp\htdocs\polidynamics\database\db.php'); 
+    $Query = "SELECT * FROM INVENTARIO";
+    $Resultado = mysqli_query($link, $Query);
+?>   
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,16 +22,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <title>PoliDynamics</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="icon" href="/PoliDynamics/style/image/IconoPoli.png" />
-    <link rel="stylesheet" href="style/General.css" type="text/css" >
+    <link rel="stylesheet" href="/PoliDynamics/views/docente/style/General.css" type="text/css" >
 </head>
 <body>
 
-  <section id="sidebar"> 
-  <div class="white-label">
-  </div> 
+    <section id="sidebar"> 
+    <div class="white-label">
+    </div> 
+  <nav class="menu">
   <div id="sidebar-nav">   
-    <ul>
-      <li class="active"><a href="#"> Home</a></li>
+    <ul id="Secciones">
+    <li class="active"><a href="#"> Home</a></li>
       <li><a href="#"> Gestión de tareas</a></li>
       <li><a href="vistas/prestamo/ListarPrestamos.php"> Gestión de prestamos</a></li>
       <li><a href="#"> Gestión de disponibilidad</a></li>
@@ -39,10 +46,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
       <li><a href="/polidynamics/views/login/Login.php"> Cerrar sesión</a></li>
       
     </ul>
+
   </div>
-  </section>
-  <section id="content">
-  <div id="header">
+</nav>
+    </section>
+
+   
+    <section id="content">
+
+    <div id="header">
     <div class="header-nav">
 
       <div class="nav">
@@ -58,11 +70,37 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </div>
   </div>
 
-    
-  <div class="content">
-    
-  </div>
-</section>
+  <h1>GESTIÓN DE INVENTARIO</h1>
 
+  <button type="button" class="btn btn-warning" style="background-color: #F1C40F;border-color: #F1C40F;"><a href="CrearInventario.php">Nuevo inventario</a></button>
+  
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+        <th scope="col">Id inventario</th>
+				<th scope="col">Referencia</th>
+				<th scope="col">Cantidad</th>
+				<th scope="col">Detalle entrada</th>
+        <th scope="col">Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php while($Filas = $Resultado->fetch_assoc()) {	
+
+   ?>
+    <tr>
+        <td><?php echo $Filas['ID_INVENTARIO'] ?></td>
+        <td><?php echo $Filas['REFERENCIA'] ?></td>
+        <td><?php echo $Filas['CANTIDAD'] ?></td>
+        <td><?php echo $Filas['DETALLE_ENTRADA'] ?></td>
+				<td>
+        <button type="button" class="btn btn-primary" ><a href="EditarInventario.php?ID_INVENTARIO=<?php echo $Filas['ID_INVENTARIO'] ?>">Modificar</a></button>
+				<button type="button" class="btn btn-danger" ><a href="metodos/MetodoEliminar.php?ID_INVENTARIO=<?php echo $Filas['ID_INVENTARIO'] ?>">Desactivar</a></button>			
+				</td>
+			</tr>
+			<?php } ?>
+		</tbody>
+	</table>  
+  </section>
 </body>
 </html>

@@ -11,15 +11,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 <?php
     include('C:\xampp\htdocs\polidynamics\database\db.php');
-    $id = $_GET['ID_SOLICITUD'];              
-    $QuerySQL = "SELECT * FROM SOLICITUD SO
-	INNER JOIN USUARIO US ON SO.USUARIO = US.ID_USUARIO
-	INNER JOIN CATEGORIA CA ON SO.CATEGORIA = CA.ID_CATEGORIA
-	INNER JOIN AULA AU ON SO.AULA = AU.ID_AULA
-    INNER JOIN ESTADO ES ON SO.ESTADO = ES.ID_ESTADO WHERE ID_SOLICITUD = '".$id."'";
-    
+    $id = $_GET['ID_INVENTARIO'];              
+    $QuerySQL = "SELECT * FROM INVENTARIO WHERE ID_INVENTARIO = '".$id."'";
     $Resultado = mysqli_query($link, $QuerySQL);
-     while($Filas = $Resultado->fetch_assoc()) {	
+    while($Filas = $Resultado->fetch_assoc()) {	
 ?>
  
 <!DOCTYPE html>
@@ -41,12 +36,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <ul id="Secciones">
     <li class="active"><a href="#"> Home</a></li>
       <li><a href="#"> Gestión de tareas</a></li>
-      <li><a href="#"> Gestión de prestamos</a></li>
+      <li><a href="vistas/prestamo/ListarPrestamos.php"> Gestión de prestamos</a></li>
       <li><a href="#"> Gestión de disponibilidad</a></li>
       <li><a href="#"> Administración de prestamos</a></li>
       <li><a href="#"> Administración de solicitudes</a></li>
       <li><a href="#"> Administración de usuarios</a></li>
-      <li><a href="#"> Administración de inventario</a></li>
+      <li><a href="vistas/inventario/ListarInventario.php"> Administración de inventario</a></li>
       <li><a href="#"> Auditoria</a></li>
       <li><a href="#"> Reportes</a></li>
       <li><a href="#"> Manual de usuario</a></li>     
@@ -77,20 +72,20 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </div>
   </div>
 
-  <h1>MODIFICAR SOLICITUD</h1>
+  <h1>MODIFICAR INVENTARIO</h1>
   <br>
 
   <form  action = "metodos/MetodoEditar.php">
         <div class="form-group">
-        <input type="hidden" name="idsolicitud" value="<?php echo $Filas['ID_SOLICITUD'] ?>">
+        <input type="hidden" name="idinventario" value="<?php echo $Filas['ID_INVENTARIO'] ?>">
             <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label>Descripcion:</label><br>   
-                        <input type="text" class="form-control" name="descripcion" value="<?php echo $Filas['DESCRIPCION'] ?>">   
+                        <label>Referencia:</label><br>   
+                        <input type="text" class="form-control" name="referencia" value="<?php echo $Filas['REFERENCIA'] ?>">   
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label>Fecha esperada:</label><br>   
-                        <input type="date" name="fecha"  class="form-control" value="<?php echo $Filas['FECHA_CREACION'] ?>">
+                        <label>Cantidad:</label><br>   
+                        <input type="text" class="form-control" name="cantidad" value="<?php echo $Filas['CANTIDAD'] ?>">
 
                     </div>
             </div>
@@ -99,37 +94,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="form-group">
             <div class="row">
                     <div class="col-md-6 mb-3">
-                    <label>Hora esperada:</label><br>   
-                    <input type="time" name="hora" class="form-control" value="<?php echo $Filas['HORA'] ?>">
-                    </div>
-                    <input  type="hidden" name="usuario" value="<?php echo $Filas['username'] ?>">
-
-                    
-                    <div class="col-md-6 mb-3">
-
-                    <label>Estado:</label><br>
-                    <select name="estado" class="form-control">
-                    <option value="<?php echo $Filas['ID_ESTADO'] ?>" disabled selected hidden><?php echo $Filas['DESCRIPCION_ESTADO'] ?></option>
-                    <?php 
-                            $Query = "SELECT ID_ESTADO, DESCRIPCION_ESTADO FROM ESTADO";
-                            $Resultado = mysqli_query($link, $Query);
-                            while($Filas = $Resultado->fetch_assoc()){
-                                echo '<option value="'.$Filas[ID_ESTADO].'">'.$Filas[DESCRIPCION_ESTADO].'</option>';   
-                            }
-                        ?>
-                    </select>
-            </div>
-        </div>
-      </div>
-    
+                    <label>Detalle entrada:</label><br>   
+                    <input type="text" class="form-control" name="detalle_entrada" value="<?php echo $Filas['DETALLE_ENTRADA'] ?>">
+           </div>
     <br>
-    <button class="btn btn-primary" type="submit"><strong> Actualizar solicitud</strong></button>
-
-
+    <button class="btn btn-primary" type="submit"><strong> Actualizar inventario</strong></button>
     </form>
     <?php } ?>
   </section>
-
-
 </body>
 </html>

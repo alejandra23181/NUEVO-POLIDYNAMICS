@@ -10,13 +10,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 ?>
 
 <?php 
-    include('C:\xampp\htdocs\polidynamics\database\db.php');    
-    $Query = "SELECT *
-	FROM SOLICITUD SO
-	INNER JOIN USUARIO US ON SO.USUARIO = US.ID_USUARIO
-	INNER JOIN CATEGORIA CA ON SO.CATEGORIA = CA.ID_CATEGORIA
-	INNER JOIN AULA AU ON SO.AULA = AU.ID_AULA
-	INNER JOIN ESTADO ES ON SO.ESTADO = ES.ID_ESTADO WHERE username = '".$_SESSION['username']."' AND estado = 1";
+    include('C:\xampp\htdocs\polidynamics\database\db.php');   
+  $Query = "SELECT *
+	FROM PRESTAMO PR
+	INNER JOIN USUARIO US ON PR.USUARIO = US.ID_USUARIO
+	INNER JOIN AULA AU ON PR.AULA = AU.ID_AULA
+  INNER JOIN SOLICITUD SO ON PR.SOLICITUD = SO.ID_SOLICITUD WHERE username = '".$_SESSION['username']."'";
 	$Resultado = mysqli_query($link, $Query);
 ?>
  
@@ -37,6 +36,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   <nav class="menu">
   <div id="sidebar-nav">   
     <ul id="Secciones">
+    <li class="active"><a href="#"> Home</a></li>
     <li ><a href="/PoliDynamics/views/docente/Index.php"> Home</a></li>
       <li class="active"><a href="ListarSolicitudes.php"> Gestión de solicitudes</a></li>
       <li ><a href="../ListarTareas.php"> Seguimiento de solicitudes</a></li>
@@ -46,7 +46,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
       <li><a href="../ListarReportes.php"> Reportes</a></li>
       <li><a href="../ManualUsuario.php"> Manual de usuario</a></li>     
       <li><a href="/polidynamics/views/login/Login.php"> Cerrar sesión</a></li>
-      
     </ul>
 
   </div>
@@ -72,38 +71,38 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </div>
   </div>
 
-  <h1>GESTIÓN DE SOLICITUDES</h1>
+  <h1>GESTIÓN DE PRESTAMOS</h1>
 
-  <button type="button" class="btn btn-warning" style="background-color: #F1C40F;border-color: #F1C40F;"><a href="CrearSolicitudes.php">Nueva solicitud</a></button>
+  <button type="button" class="btn btn-warning" style="background-color: #F1C40F;border-color: #F1C40F;"><a href="CrearPrestamo.php">Nuevo prestamo</a></button>
   
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th scope="col">Id. solicitud</th>
-				<th scope="col">Descripción de la solicitud</th>
-				<th scope="col">Fecha de creación</th>
-				<th scope="col">Hora</th>
+				<th scope="col">Fecha del prestamo</th>
+				<th scope="col">Fecha del prestamo esperada</th>
+				<th scope="col">Hora incio</th>
+				<th scope="col">Hora fin</th>
 				<th scope="col">Usuario</th>
-				<th scope="col">Categoria</th>
 				<th scope="col">Aula</th>
+        <th scope="col">Solicitud</th>
         <th scope="col">Acciones</th>
 			</tr>
 		</thead>
 		<tbody>
-			<?php while($Filas = $Resultado->fetch_assoc()) {	
+        <?php while($Filas = $Resultado->fetch_assoc()) {	
 
-			?>
-			<tr>
-				<th scope="row"><?php echo $Filas['ID_SOLICITUD'] ?></th>
-				<td><?php echo $Filas['DESCRIPCION'] ?></td>
-				<td><?php echo $Filas['FECHA_CREACION'] ?></td>
-				<td><?php echo $Filas['HORA'] ?></td>
-				<td><?php echo $Filas['PRIMER_NOMBRE_USUARIO'] ?></td>
-				<td><?php echo $Filas['DESCRIPCION_CATEGORIA'] ?></td>
-				<td><?php echo $Filas['NUMERO_AULA'] ?></td>
+        ?>
+            <tr>
+                <td><?php echo $Filas['FECHA_PRESTAMO'] ?></td>
+                <td><?php echo $Filas['FECHA_PRESTAMO_ESPERADA'] ?></td>
+                <td><?php echo $Filas['HORA_INICIO'] ?></td>
+                <td><?php echo $Filas['HORA_FIN'] ?></td>
+                <td><?php echo $Filas['PRIMER_NOMBRE_USUARIO'] ?></td>
+                <td><?php echo $Filas['NUMERO_AULA'] ?></td>
+                <td><?php echo $Filas['DESCRIPCION'] ?></td>
 				<td>
-					<button type="button" class="btn btn-primary" ><a href="EditarSolicitudes.php?ID_SOLICITUD=<?php echo $Filas['ID_SOLICITUD'] ?>">Modificar</a></button>
-					<button type="button" class="btn btn-danger" ><a href="metodos/MetodoEliminar.php?ID_SOLICITUD=<?php echo $Filas['ID_SOLICITUD'] ?>">Desactivar</a></button>			
+					<button type="button" class="btn btn-primary" ><a href="EditarPrestamos.php?ID_PRESTAMO=<?php echo $Filas['ID_PRESTAMO'] ?>">Modificar</a></button>
+					<button type="button" class="btn btn-danger" ><a href="metodos/MetodoEliminar.php?ID_PRESTAMO=<?php echo $Filas['ID_PRESTAMO'] ?>">Desactivar</a></button>			
 				</td>
 			</tr>
 			<?php } ?>

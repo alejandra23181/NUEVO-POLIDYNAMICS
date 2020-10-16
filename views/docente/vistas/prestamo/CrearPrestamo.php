@@ -9,17 +9,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 ?>
 
-<?php
-    include('C:\xampp\htdocs\polidynamics\database\db.php');
-    $id = $_GET['ID_SOLICITUD'];
-    $QuerySQL = "SELECT * FROM SOLICITUD SO
-	INNER JOIN USUARIO US ON SO.USUARIO = US.ID_USUARIO
-	INNER JOIN CATEGORIA CA ON SO.CATEGORIA = CA.ID_CATEGORIA
-	INNER JOIN AULA AU ON SO.AULA = AU.ID_AULA
-    INNER JOIN ESTADO ES ON SO.ESTADO = ES.ID_ESTADO WHERE ID_SOLICITUD = '".$id."'";
-    
-    $Resultado = mysqli_query($link, $QuerySQL);
-     while($Filas = $Resultado->fetch_assoc()) {	
+<?php 
+    include('C:\xampp\htdocs\polidynamics\database\db.php');    
+    $Query = "SELECT *
+    FROM PRESTAMO PR
+    INNER JOIN USUARIO US ON PR.USUARIO = US.ID_USUARIO
+    INNER JOIN AULA AU ON PR.AULA = AU.ID_AULA
+    INNER JOIN SOLICITUD SO ON PR.SOLICITUD = SO.ID_SOLICITUD WHERE username = '".$_SESSION['username']."'";
+    $Resultado = mysqli_query($link, $Query);
 ?>
  
 <!DOCTYPE html>
@@ -39,6 +36,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   <nav class="menu">
   <div id="sidebar-nav">   
     <ul id="Secciones">
+    <li class="active"><a href="#"> Home</a></li>
     <li ><a href="/PoliDynamics/views/docente/Index.php"> Home</a></li>
       <li class="active"><a href="ListarSolicitudes.php"> Gestión de solicitudes</a></li>
       <li ><a href="../ListarTareas.php"> Seguimiento de solicitudes</a></li>
@@ -48,7 +46,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
       <li><a href="../ListarReportes.php"> Reportes</a></li>
       <li><a href="../ManualUsuario.php"> Manual de usuario</a></li>     
       <li><a href="/polidynamics/views/login/Login.php"> Cerrar sesión</a></li>
-      
     </ul>
 
   </div>
@@ -74,21 +71,19 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </div>
   </div>
 
-  <h1>MODIFICAR SOLICITUD</h1>
+  <h1>CREACIÓN DE PRESTAMOS</h1>
   <br>
 
-  <form  action = "metodos/MetodoEditar.php">
+  <form method = "POST" action = "metodos/MetodoInsertar.php">
         <div class="form-group">
-        <input type="hidden" name="idsolicitud" value="<?php echo $Filas['ID_SOLICITUD'] ?>">
             <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label>Descripcion:</label><br>   
-                        <input type="text" class="form-control" name="descripcion" value="<?php echo $Filas['DESCRIPCION'] ?>">   
+                        <label>Fecha prestamo:</label><br>   
+                        <input type="date" name="fecha_prestamo"  class="form-control" value="<?php echo date("Y-m-d");?>" required>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label>Fecha esperada:</label><br>   
-                        <input type="date" name="fecha"  class="form-control" value="<?php echo $Filas['FECHA_CREACION'] ?>">
-
+                        <label>Fecha esperada prestamo:</label><br>   
+                        <input type="date" name="fecha_esperada"  class="form-control" value="<?php echo date("Y-m-d");?>" required>
                     </div>
             </div>
         </div>
@@ -96,17 +91,23 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="form-group">
             <div class="row">
                     <div class="col-md-6 mb-3">
-                    <label>Hora esperada:</label><br>   
-                    <input type="time" name="hora" class="form-control" value="<?php echo $Filas['HORA'] ?>">
+                    <label>Hora inicio:</label><br>   
+                    <input type="time" class="form-control" name="hora_inicio" required>
                     </div>
-                    <input  type="hidden" name="usuario" value="<?php echo $Filas['username'] ?>">
-
-                    
                     <div class="col-md-6 mb-3">
+                    <label>Hora fin:</label><br>   
+                    <input type="time" class="form-control" name="hora_fin" required>
+                    </div>
+                    <input  type="hidden" name="usuario" value="<?php echo htmlspecialchars($_SESSION["id"]); ?>">
+            </div>
+        </div>
 
+        <div class="form-group">
+            <div class="row">
+                    <div class="col-md-6 mb-3">
                     <label>Aula:</label><br>
                     <select name="aula" class="form-control">
-                    <option value="<?php echo $Filas['NUMERO_AULA'] ?>" disabled selected hidden><?php echo $Filas['NUMERO_AULA'] ?></option>
+                        <option value="0">Seleccione una de las opciones:</option>
                         <?php 
                             $Query = "SELECT ID_AULA, NUMERO_AULA FROM AULA";
                             $Resultado = mysqli_query($link, $Query);
@@ -115,18 +116,25 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                             }
                         ?>
                     </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                    <label>Solicitud:</label><br>
+                    <select name="solicitud" class="form-control">
+                        <option value="0">Seleccione una de las opciones:</option>
+                        <?php 
+                            $Query = "SELECT ID_SOLICITUD, DESCRIPCION FROM SOLICITUD";
+                            $Resultado = mysqli_query($link, $Query);
+                            while($Filas = $Resultado->fetch_assoc()){
+                                echo '<option value="'.$Filas[ID_SOLICITUD].'">'.$Filas[DESCRIPCION].'</option>';   
+                            }
+                        ?>
+                    </select>
+                    </div>
             </div>
         </div>
-      </div>
-    
-    <br>
-    <button class="btn btn-primary" type="submit"><strong> Actualizar solicitud</strong></button>
-
-
+        <br>
+        <button class="btn btn-primary" type="submit"><strong> Crear prestamo</strong></button>
     </form>
-    <?php } ?>
   </section>
-
-
 </body>
 </html>

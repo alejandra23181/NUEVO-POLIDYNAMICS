@@ -40,7 +40,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <li ><a href="../Index.php"> Home</a></li>
       <li><a href="solicitudes/ListarSolicitudes.php"> Gestión de solicitudes</a></li>
       <li class="active"><a href="ListarTareas.php"> Seguimiento de solicitudes</a></li>
-      <li><a href="#"> Gestión de prestamos</a></li>
+      <li><a href="vistas/prestamo/ListarPrestamos.php"> Gestión de prestamos</a></li>
       <li><a href="ListarDisponibilidad.php"> Disponibilidad</a></li>
       <li><a href="ListarAuditoria.php"> Auditoria</a></li>
       <li><a href="ListarReportes.php"> Reportes</a></li>

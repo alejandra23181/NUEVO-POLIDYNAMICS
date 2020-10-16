@@ -11,13 +11,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 <?php
     include('C:\xampp\htdocs\polidynamics\database\db.php');
-    $id = $_GET['ID_SOLICITUD'];              
-    $QuerySQL = "SELECT * FROM SOLICITUD SO
-	INNER JOIN USUARIO US ON SO.USUARIO = US.ID_USUARIO
-	INNER JOIN CATEGORIA CA ON SO.CATEGORIA = CA.ID_CATEGORIA
-	INNER JOIN AULA AU ON SO.AULA = AU.ID_AULA
-    INNER JOIN ESTADO ES ON SO.ESTADO = ES.ID_ESTADO WHERE ID_SOLICITUD = '".$id."'";
-    
+    $id = $_GET['ID_PRESTAMO'];              
+    $QuerySQL = "SELECT * FROM PRESTAMO PR
+    INNER JOIN USUARIO US ON PR.USUARIO = US.ID_USUARIO
+    INNER JOIN AULA AU ON PR.AULA = AU.ID_AULA
+    INNER JOIN SOLICITUD SO ON PR.SOLICITUD = SO.ID_SOLICITUD WHERE ID_PRESTAMO = '".$id."'";
     $Resultado = mysqli_query($link, $QuerySQL);
      while($Filas = $Resultado->fetch_assoc()) {	
 ?>
@@ -41,12 +39,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <ul id="Secciones">
     <li class="active"><a href="#"> Home</a></li>
       <li><a href="#"> Gestión de tareas</a></li>
-      <li><a href="#"> Gestión de prestamos</a></li>
+      <li><a href="vistas/inventario/ListarPrestamos.php"> Gestión de prestamos</a></li>
       <li><a href="#"> Gestión de disponibilidad</a></li>
       <li><a href="#"> Administración de prestamos</a></li>
       <li><a href="#"> Administración de solicitudes</a></li>
       <li><a href="#"> Administración de usuarios</a></li>
-      <li><a href="#"> Administración de inventario</a></li>
+      <li><a href="vistas/inventario/ListarInventario.php"> Administración de inventario</a></li>
       <li><a href="#"> Auditoria</a></li>
       <li><a href="#"> Reportes</a></li>
       <li><a href="#"> Manual de usuario</a></li>     
@@ -57,13 +55,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   </div>
 </nav>
     </section>
-
-   
     <section id="content">
-
     <div id="header">
     <div class="header-nav">
-
       <div class="nav">
         <ul>
           <li class="nav-profile">
@@ -77,21 +71,20 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </div>
   </div>
 
-  <h1>MODIFICAR SOLICITUD</h1>
+  <h1>MODIFICAR PRESTAMO</h1>
   <br>
 
   <form  action = "metodos/MetodoEditar.php">
         <div class="form-group">
-        <input type="hidden" name="idsolicitud" value="<?php echo $Filas['ID_SOLICITUD'] ?>">
+        <input type="hidden" name="idprestamo" value="<?php echo $Filas['ID_PRESTAMO'] ?>">
             <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label>Descripcion:</label><br>   
-                        <input type="text" class="form-control" name="descripcion" value="<?php echo $Filas['DESCRIPCION'] ?>">   
+                        <label>Fecha prestamo:</label><br>   
+                        <input type="date" name="fecha_prestamo"  class="form-control" value="<?php echo $Filas['FECHA_PRESTAMO'] ?>">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label>Fecha esperada:</label><br>   
-                        <input type="date" name="fecha"  class="form-control" value="<?php echo $Filas['FECHA_CREACION'] ?>">
-
+                        <label>Fecha esperada prestamo:</label><br>   
+                        <input type="date" name="fecha_esperada"  class="form-control" value="<?php echo $Filas['FECHA_PRESTAMO_ESPERADA'] ?>">
                     </div>
             </div>
         </div>
@@ -99,37 +92,38 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="form-group">
             <div class="row">
                     <div class="col-md-6 mb-3">
-                    <label>Hora esperada:</label><br>   
-                    <input type="time" name="hora" class="form-control" value="<?php echo $Filas['HORA'] ?>">
+                    <label>Hora inicio:</label><br>   
+                    <input type="time" name="hora_inicio" class="form-control" value="<?php echo $Filas['HORA_INICIO'] ?>">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                    <label>Hora fin:</label><br>   
+                    <input type="time" name="hora_fin" class="form-control" value="<?php echo $Filas['HORA_FIN'] ?>">
                     </div>
                     <input  type="hidden" name="usuario" value="<?php echo $Filas['username'] ?>">
+            </div>
+        </div>
 
-                    
+        <div class="form-group">
+            <div class="row">
                     <div class="col-md-6 mb-3">
-
-                    <label>Estado:</label><br>
-                    <select name="estado" class="form-control">
-                    <option value="<?php echo $Filas['ID_ESTADO'] ?>" disabled selected hidden><?php echo $Filas['DESCRIPCION_ESTADO'] ?></option>
-                    <?php 
-                            $Query = "SELECT ID_ESTADO, DESCRIPCION_ESTADO FROM ESTADO";
+                    <label>Aula:</label><br>
+                    <select name="aula" class="form-control">
+                    <option value="<?php echo $Filas['ID_AULA'] ?>" enable selected hidden><?php echo $Filas['NUMERO_AULA'] ?></option>
+                        <?php 
+                            $Query = "SELECT ID_AULA, NUMERO_AULA FROM AULA";
                             $Resultado = mysqli_query($link, $Query);
                             while($Filas = $Resultado->fetch_assoc()){
-                                echo '<option value="'.$Filas[ID_ESTADO].'">'.$Filas[DESCRIPCION_ESTADO].'</option>';   
+                                echo '<option value="'.$Filas[ID_AULA].'">'.$Filas[NUMERO_AULA].'</option>';   
                             }
                         ?>
                     </select>
+                    </div>
             </div>
         </div>
-      </div>
-    
     <br>
-    <button class="btn btn-primary" type="submit"><strong> Actualizar solicitud</strong></button>
-
-
+    <button class="btn btn-primary" type="submit"><strong> Actualizar prestamo</strong></button>
     </form>
     <?php } ?>
   </section>
-
-
 </body>
 </html>
