@@ -31,18 +31,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </div> 
   <nav class="menu">
   <div id="sidebar-nav">   
-  <ul>
-      <li class="active"><a href="#"> Home</a></li>
-      <li><a href="#"> Gestión de tareas</a></li>
-      <li><a href="#"> Gestión de prestamos</a></li>
-      <li><a href="#"> Gestión de disponibilidad</a></li>
-      <li><a href="#"> Administración de prestamos</a></li>
-      <li><a href="#"> Administración de solicitudes</a></li>
-      <li><a href="#"> Administración de usuarios</a></li>
-      <li><a href="#"> Administración de inventario</a></li>
-      <li><a href="#"> Auditoria</a></li>
-      <li><a href="#"> Reportes</a></li>
-      <li><a href="#"> Manual de usuario</a></li>     
+  <ul id="Secciones">
+      <li ><a href="\PoliDynamics\views\administrador\Index.php"> Home</a></li>
+      <li  ><a href="\PoliDynamics\views\administrador\vistas\tareas\ListarTareas.php"> Gestión de tareas</a></li>
+      <li class="active"><a href="\PoliDynamics\views\administrador\vistas\disponibilidad\ListarDisponibilidad.php"> Gestión de disponibilidad</a></li>
+      <li><a href="\PoliDynamics\views\administrador\vistas\prestamo\ListarPrestamos.php"> Administración de prestamos</a></li>
+      <li  ><a href="\PoliDynamics\views\administrador\vistas\solicitudes\ListarSolicitudes.php"> Administración de solicitudes</a></li>
+      <li><a href="\PoliDynamics\views\administrador\vistas\usuarios\ListarUsuarios.php"> Administración de usuarios</a></li>
+      <li><a href="\PoliDynamics\views\administrador\vistas\inventario\ListarInventario.php"> Administración de inventario</a></li>
+      <li ><a href="\PoliDynamics\views\administrador\vistas\ListarAuditoria.php"> Auditoria</a></li>
+      <li><a href="\PoliDynamics\views\administrador\vistas\ListarReportes.php"> Reportes</a></li>
+      <li><a href="\PoliDynamics\views\administrador\vistas\ManualTecnico.php"> Manual de usuario</a></li>     
       <li><a href="/polidynamics/views/login/Login.php"> Cerrar sesión</a></li>
       
     </ul>

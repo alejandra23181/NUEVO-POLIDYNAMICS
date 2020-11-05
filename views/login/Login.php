@@ -105,19 +105,61 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
-    </style>
+    
+    <title>Poli Dynamics </title>
+    <meta charset="uft-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width-device-width">
+    <meta name="descripcion" content="Diseño y Desarrollo Web">    
+    <meta name="Keywords" content="Diseño Web, desarrollo, po,posicionamiento">
+    <meta name="author" content="Render2Web">
+    <link rel="stylesheet" type="text/css" href="/PoliDynamics/style/estilos.css">
+
+    <link rel="stylesheet" type="text/css" href="/PoliDynamics/style/Login.css">
+    <link rel="icon" href="/PoliDynamics/style/image/IconoPoli.png" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href=/PoliDynamics/style/blog.css" rel="stylesheet">
+
 </head>
 <body>
-    <div class="wrapper">
-        <h2>Login ConfiguroWeb</h2>
-        <p>Por favor, complete sus credenciales para iniciar sesión.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    
+    <header>
+        <div class="contenedor">
+            <div id="marca">
+
+            <h1><span class="resaltado"> Poli </span> Dynamics</h1>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="Index.php">Inicio</a></li>
+                <li><a href="secciones/nosotros.php">Acerca de nosotros</a></li>
+                <li><a href="secciones/servicios.php">Nuestros servicios</a></li>
+                <li><a href="secciones/clientes.php">A quien servimos</a></li>
+                <li class="actual"><a href="views/login/Login.php">Inicio de sesión</a></li>
+            </ul>
+        </nav>
+        </div>
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
+
+<!-- Bootstrap core CSS -->
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="../css/blog.css" rel="stylesheet">
+    </header>
+
+<body>
+
+    <div class="container">
+    <h1 >Inicio de sesión</h1>
+
+        <form  class="form-signin" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                 <label>Usuario</label>
                 <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">

@@ -36,15 +36,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   <nav class="menu">
   <div id="sidebar-nav">   
     <ul id="Secciones">
-    <li class="active"><a href="#"> Home</a></li>
     <li ><a href="/PoliDynamics/views/docente/Index.php"> Home</a></li>
-      <li class="active"><a href="ListarSolicitudes.php"> Gestión de solicitudes</a></li>
-      <li ><a href="../ListarTareas.php"> Seguimiento de solicitudes</a></li>
-      <li><a href="../ListarPrestamos.php"> Gestión de prestamos</a></li>
-      <li><a href="../ListarDisponibilidad.php"> Disponibilidad</a></li>
-      <li><a href="../ListarAuditoria.php"> Auditoria</a></li>
-      <li><a href="../ListarReportes.php"> Reportes</a></li>
-      <li><a href="../ManualUsuario.php"> Manual de usuario</a></li>     
+      <li ><a href="\PoliDynamics\views\docente\vistas\solicitudes\ListarSolicitudes.php"> Gestión de solicitudes</a></li>
+      <li ><a href="\PoliDynamics\views\docente\vistas\ListarTareas.php"> Seguimiento de solicitudes</a></li>
+      <li class="active"><a href="\PoliDynamics\views\docente\vistas\prestamo\ListarPrestamos.php"> Gestión de prestamos</a></li>
+      <li><a href="\PoliDynamics\views\docente\vistas\ListarDisponibilidad.php"> Disponibilidad</a></li>
+      <li><a href="\PoliDynamics\views\docente\vistas\ListarAuditoria.php"> Auditoria</a></li>
+      <li><a href="\PoliDynamics\views\docente\vistas\ListarReportes.php"> Reportes</a></li>
+      <li><a href="\PoliDynamics\views\docente\vistas\ManualUsuario.php"> Manual de usuario</a></li>     
       <li><a href="/polidynamics/views/login/Login.php"> Cerrar sesión</a></li>
     </ul>
 
