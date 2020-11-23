@@ -95,7 +95,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                  
                  ?>
 		
-                <td>
+                <td style="width: 2px;">
 					<button type="button" class="btn btn-primary" ><a href="ModificarDisponibilidad.php?ID_AULA=<?php echo $Filas['ID_AULA'] ?>">Modificar</a></button>
 				</td>
                 </tr>

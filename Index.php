@@ -30,12 +30,12 @@
 
         <nav>
             <ul>
-                <li class="actual"><a href="Index.php">Inicio</a></li>
-                <li><a href="secciones/nosotros.php">Acerca de nosotros</a></li>
-                <li><a href="secciones/servicios.php">Nuestros servicios</a></li>
-                <li><a href="secciones/clientes.php">A quien servimos</a></li>
-                <li><a href="views/login/Login.php">Inicio de sesión</a></li>
-            </ul>
+                <li class="actual"><a href="\PoliDynamics\Index.php">Inicio</a></li>
+                <li><a href="\PoliDynamics\secciones\nosotros.php">Acerca de nosotros</a></li>
+                <li><a href="\PoliDynamics\secciones\servicios.php">Nuestros servicios</a></li>
+                <li><a href="\PoliDynamics\secciones\clientes.php">A quien servimos</a></li>
+                <li><a href="\PoliDynamics\views\login\Login.php">Inicio de sesión</a></li>
+</ul>
         </nav>
         </div>
         <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
