@@ -74,7 +74,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		<tbody>
 			<tr>
 				<td style="text-align: center;">Manual usuario</td>
-				<td style="width: 10px;"><button type="button" class="btn btn-danger">PDF</button></td>
+				<td style="width: 10px;"><a href="/PoliDynamics/files/MANUALTECNICOV.1.pdf" download="MANUALTECNICOV.1.pdf"><button type="button" class="btn btn-danger">PDF</button></td>
       </tr>
       
       <tr>

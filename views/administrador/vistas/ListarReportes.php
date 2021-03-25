@@ -74,12 +74,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		<tbody>
 			<tr>
 				<td style="text-align: center;">Número de solucitudes realizadas en vida útil de la plataforma</td>
-				<td style="width: 10px;"><button type="button" class="btn btn-danger">PDF</button></td>
+				<td style="width: 10px;"><a href="\PoliDynamics\files\reportes-admin\Reporte-1.php"><button type="button" class="btn btn-danger">PDF</button></td>
       </tr>
       
       <tr>
 				<td style="text-align: center;">Número de solucitudes reportadas y solucionadas</td>
-				<td style="width: 10px;"><button type="button" class="btn btn-danger">PDF</button></td>
+				<td style="width: 10px;"><a href="\PoliDynamics\files\reportes-admin\Reporte-2.php"><button type="button" class="btn btn-danger">PDF</button></td>
       </tr>
       
       <tr>
