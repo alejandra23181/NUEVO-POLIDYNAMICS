@@ -75,7 +75,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </div>
   </div>
 
-  <h1>CREACIÓN DE TAREAS</h1>
+  <h1>MODIFICAR TAREAS</h1>
   <br>
 
   <form  action = "metodos/MetodoEditar.php">
@@ -98,12 +98,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <div class="row">
                     <div class="col-md-6 mb-3">
                         <label>Fecha inicio:</label><br>   
-                        <input type="date" name="fechainicio"  class="form-control" value="<?php echo $Filas['FECHA_INICIO'] ?>" required>
+                        <input type="date" name="fechainicio" max="22:00:00" min="06:00:00" class="form-control" value="<?php echo $Filas['FECHA_INICIO'] ?>" readonly>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <label>Hora inicio:</label><br>   
-                        <input type="time" name="horainicio"  class="form-control" value="<?php echo $Filas['HORA_INICIO'] ?>" required>
+                        <input type="time" name="horainicio" max="22:00:00" min="06:00:00" class="form-control" value="<?php echo $Filas['HORA_INICIO'] ?>" required>
                     </div>
             </div>
         </div>

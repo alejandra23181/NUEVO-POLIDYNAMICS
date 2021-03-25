@@ -14,8 +14,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     $Query = "SELECT *
     FROM PRESTAMO PR
     INNER JOIN USUARIO US ON PR.USUARIO = US.ID_USUARIO
-    INNER JOIN AULA AU ON PR.AULA = AU.ID_AULA
-    INNER JOIN SOLICITUD SO ON PR.SOLICITUD = SO.ID_SOLICITUD WHERE username = '".$_SESSION['username']."'";
+    INNER JOIN AULA AU ON PR.AULA = AU.ID_AULA WHERE username = '".$_SESSION['username']."'";
     $Resultado = mysqli_query($link, $Query);
 ?>
  
@@ -36,17 +35,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   <nav class="menu">
   <div id="sidebar-nav">   
   <ul id="Secciones">
-      <li ><a href="\PoliDynamics\views\administrador\Index.php"> Home</a></li>
+      <li ><a href="\PoliDynamics\views\administrador\Index.php"> Inicio</a></li>
       <li  ><a href="\PoliDynamics\views\administrador\vistas\tareas\ListarTareas.php"> Gestión de tareas</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\disponibilidad\ListarDisponibilidad.php"> Gestión de disponibilidad</a></li>
-      <li class="active"><a href="\PoliDynamics\views\administrador\vistas\prestamo\ListarPrestamos.php"> Administración de prestamos</a></li>
+      <li class="active"><a href="\PoliDynamics\views\administrador\vistas\prestamo\ListarPrestamos.php"> Administración de préstamos</a></li>
       <li  ><a href="\PoliDynamics\views\administrador\vistas\solicitudes\ListarSolicitudes.php"> Administración de solicitudes</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\usuarios\ListarUsuarios.php"> Administración de usuarios</a></li>
       <li  ><a href="\PoliDynamics\views\administrador\vistas\inventario\ListarInventario.php"> Administración de inventario</a></li>
-      <li ><a href="\PoliDynamics\views\administrador\vistas\ListarAuditoria.php"> Auditoria</a></li>
+      <li ><a href="\PoliDynamics\views\administrador\vistas\ListarAuditoria.php"> Auditoría</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\ListarReportes.php"> Reportes</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\ManualTecnico.php"> Manual de usuario</a></li>     
-      <li><a href="/polidynamics/views/login/Login.php"> Cerrar sesión</a></li>
+      <li><a href="\PoliDynamics\Index.php"> Cerrar sesión</a></li>
       
     </ul>
 
@@ -80,11 +79,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="form-group">
             <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label>Fecha prestamo:</label><br>   
-                        <input type="date" name="fecha_prestamo"  class="form-control" value="<?php echo date("Y-m-d");?>" required>
+                        <label>Fecha inicial*:</label><br>   
+                        <input type="date" name="fecha_prestamo"  class="form-control" value="<?php echo date("Y-m-d");?>" readonly>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label>Fecha esperada prestamo:</label><br>   
+                        <label>Fecha prestamo*:</label><br>   
                         <input type="date" name="fecha_esperada"  class="form-control" value="<?php echo date("Y-m-d");?>" required>
                     </div>
             </div>
@@ -93,41 +92,27 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="form-group">
             <div class="row">
                     <div class="col-md-6 mb-3">
-                    <label>Hora inicio:</label><br>   
-                    <input type="time" class="form-control" name="hora_inicio" required>
+                    <label>Hora inicio*:</label><br>   
+                    <input type="time" max="22:00:00" min="06:00:00" step="1" class="form-control" name="hora_inicio" required>
                     </div>
                     <div class="col-md-6 mb-3">
-                    <label>Hora fin:</label><br>   
-                    <input type="time" class="form-control" name="hora_fin" required>
+                    <label>Hora fin*:</label><br>   
+                    <input type="time" max="22:00:00" min="06:00:00" step="1" class="form-control" name="hora_fin" required>
                     </div>
-                    <input  type="hidden" name="usuario" value="<?php echo htmlspecialchars($_SESSION["id"]); ?>">
-            </div>
+                    <input  type="hidden" name="usuario" value="<?php echo htmlspecialchars($_SESSION["username"]); ?>">            </div>
         </div>
 
         <div class="form-group">
             <div class="row">
                     <div class="col-md-6 mb-3">
                     <label>Aula:</label><br>
-                    <select name="aula" class="form-control">
-                        <option value="0">Seleccione una de las opciones:</option>
+                    <select name="aula" class="form-control" required>
+                        <option value="0">Seleccione una de las opciones*:</option>
                         <?php 
-                            $Query = "SELECT ID_AULA, NUMERO_AULA FROM AULA";
+                            $Query = "SELECT * FROM AULA WHERE DISPONIBILIDAD='1'";
                             $Resultado = mysqli_query($link, $Query);
                             while($Filas = $Resultado->fetch_assoc()){
-                                echo '<option value="'.$Filas[ID_AULA].'">'.$Filas[NUMERO_AULA].'</option>';   
-                            }
-                        ?>
-                    </select>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                    <label>Solicitud:</label><br>
-                    <select name="solicitud" class="form-control">
-                        <option value="0">Seleccione una de las opciones:</option>
-                        <?php 
-                            $Query = "SELECT ID_SOLICITUD, DESCRIPCION FROM SOLICITUD";
-                            $Resultado = mysqli_query($link, $Query);
-                            while($Filas = $Resultado->fetch_assoc()){
-                                echo '<option value="'.$Filas[ID_SOLICITUD].'">'.$Filas[DESCRIPCION].'</option>';   
+                                echo '<option value="'.$Filas["ID_AULA"].'">'.$Filas["NUMERO_AULA"].'</option>';   
                             }
                         ?>
                     </select>

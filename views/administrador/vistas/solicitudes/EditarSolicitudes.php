@@ -112,7 +112,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                             $Query = "SELECT ID_ESTADO, DESCRIPCION_ESTADO FROM ESTADO";
                             $Resultado = mysqli_query($link, $Query);
                             while($Filas = $Resultado->fetch_assoc()){
-                                echo '<option value="'.$Filas[ID_ESTADO].'">'.$Filas[DESCRIPCION_ESTADO].'</option>';   
+                                echo '<option value="'.$Filas["ID_ESTADO"].'">'.$Filas["DESCRIPCION_ESTADO"].'</option>';   
                             }
                         ?>
                     </select>

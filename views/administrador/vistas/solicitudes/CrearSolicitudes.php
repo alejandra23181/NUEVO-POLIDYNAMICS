@@ -97,7 +97,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <label>Hora esperada:</label><br>   
                     <input type="time" class="form-control" name="hora" required>
                     </div>
-                    <input  type="hidden" name="usuario" value="<?php echo htmlspecialchars($_SESSION["id"]); ?>">
+                    <input  type="hidden" name="usuario" max="22:00:00" min="06:00:00" value="<?php echo htmlspecialchars($_SESSION["username"]); ?>">
 
                     <div class="col-md-6 mb-3">
 
@@ -108,7 +108,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                             $Query = "SELECT ID_CATEGORIA, DESCRIPCION_CATEGORIA FROM CATEGORIA";
                             $Resultado = mysqli_query($link, $Query);
                             while($Filas = $Resultado->fetch_assoc()){
-                                echo '<option value="'.$Filas[ID_CATEGORIA].'">'.$Filas[DESCRIPCION_CATEGORIA].'</option>';   
+                                echo '<option value="'.$Filas["ID_CATEGORIA"].'">'.$Filas["DESCRIPCION_CATEGORIA"].'</option>';   
                             }
                         ?>
                     </select>
@@ -127,19 +127,19 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                             $Query = "SELECT ID_AULA, NUMERO_AULA FROM AULA";
                             $Resultado = mysqli_query($link, $Query);
                             while($Filas = $Resultado->fetch_assoc()){
-                                echo '<option value="'.$Filas[ID_AULA].'">'.$Filas[NUMERO_AULA].'</option>';   
+                                echo '<option value="'.$Filas["ID_AULA"].'">'.$Filas["NUMERO_AULA"].'</option>';   
                             }
                         ?>
                     </select>
                     </div>
                     <div class="col-md-6 mb-3">
                     <label>Estado:</label><br>
-                    <select name="estado" class="form-control">
+                    <select name="estado" class="form-control" readonly>
                         <?php 
                             $Query = "SELECT ID_ESTADO, DESCRIPCION_ESTADO FROM ESTADO WHERE ID_ESTADO = 1";
                             $Resultado = mysqli_query($link, $Query);
                             while($Filas = $Resultado->fetch_assoc()){
-                                echo '<option value="'.$Filas[ID_ESTADO].'">'.$Filas[DESCRIPCION_ESTADO].'</option>';   
+                                echo '<option value="'.$Filas["ID_ESTADO"].'">'.$Filas["DESCRIPCION_ESTADO"].'</option>';   
                             }
                         ?>
                     </select>

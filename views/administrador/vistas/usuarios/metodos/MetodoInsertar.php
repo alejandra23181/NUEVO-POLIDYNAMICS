@@ -1,8 +1,7 @@
 <?php
+include('C:\xampp\htdocs\polidynamics\database\db.php'); 
 
-include('C:\xampp\htdocs\polidynamics\database\db.php');
 
-if(isset($_REQUEST['btn_guardar'])){
 
     
 
@@ -19,10 +18,9 @@ if(isset($_REQUEST['btn_guardar'])){
     $username=$_POST['username'];
     $password=$_POST['password'];
 
-        $PERFIL=$_POST['PERFIL'];
-    $sql="INSERT INTO usuario (PRIMER_NOMBRE_USUARIO,SEGUNDO_NOMBRE_USUARIO,PRIMER_APELLIDO_USUARIO,SEGUNDO_APELLIDO_USUARIO,
+    $sql="INSERT INTO USUARIO (ID_USUARIO,PRIMER_NOMBRE_USUARIO,SEGUNDO_NOMBRE_USUARIO,PRIMER_APELLIDO_USUARIO,SEGUNDO_APELLIDO_USUARIO,
                                 TELEFONO,EMAIL,TIPO_DOCUMENTO,IDENTIFICACION,GENERO,PERFIL,username,password) 
-                VALUES ('$PRIMER_NOMBRE_USUARIO','$SEGUNDO_NOMBRE_USUARIO','$PRIMER_APELLIDO_USUARIO','$SEGUNDO_APELLIDO_USUARIO',
+                VALUES (NULL,'$PRIMER_NOMBRE_USUARIO','$SEGUNDO_NOMBRE_USUARIO','$PRIMER_APELLIDO_USUARIO','$SEGUNDO_APELLIDO_USUARIO',
                         '$TELEFONO','$EMAIL','$TIPO_DOCUMENTO','$IDENTIFICACION','$GENERO',' $PERFIL','$username','$password')";
 
     $ejecutar=mysqli_query($link, $sql);
@@ -32,7 +30,6 @@ if(isset($_REQUEST['btn_guardar'])){
 
     }
 
-}
 
 
 ?>

@@ -25,17 +25,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   </div> 
   <div id="sidebar-nav">   
   <ul id="Secciones">
-      <li class="active"><a href="\PoliDynamics\views\administrador\Index.php"> Home</a></li>
+      <li class="active"><a href="\PoliDynamics\views\administrador\Index.php"> Inicio</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\tareas\ListarTareas.php"> Gestión de tareas</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\disponibilidad\ListarDisponibilidad.php"> Gestión de disponibilidad</a></li>
-      <li><a href="\PoliDynamics\views\administrador\vistas\prestamo\ListarPrestamos.php"> Administración de prestamos</a></li>
+      <li><a href="\PoliDynamics\views\administrador\vistas\prestamo\ListarPrestamos.php"> Administración de préstamos</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\solicitudes\ListarSolicitudes.php"> Administración de solicitudes</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\usuarios\ListarUsuarios.php"> Administración de usuarios</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\inventario\ListarInventario.php"> Administración de inventario</a></li>
-      <li ><a href="\PoliDynamics\views\administrador\vistas\ListarAuditoria.php"> Auditoria</a></li>
+      <li ><a href="\PoliDynamics\views\administrador\vistas\ListarAuditoria.php"> Auditoría</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\ListarReportes.php"> Reportes</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\ManualTecnico.php"> Manual de usuario</a></li>     
-      <li><a href="/polidynamics/views/login/Login.php"> Cerrar sesión</a></li>
+      <li><a href="\PoliDynamics\Index.php"> Cerrar sesión</a></li>
       
     </ul>
   </div>
@@ -57,10 +57,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </div>
   </div>
 
-    
-  <div class="content">
-    
-  </div>
+  <h1 style="text-transform: uppercase;">BIENVENID@ <?php echo htmlspecialchars($_SESSION["username"]); ?></h1>
+
+  <img style="margin-top: 24px;margin-left: 388px;" src="\PoliDynamics\img\home.jpg">
+
+ 
 </section>
 
 </body>

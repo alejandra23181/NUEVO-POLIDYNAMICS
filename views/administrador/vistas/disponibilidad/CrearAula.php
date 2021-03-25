@@ -12,8 +12,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <?php 
     include('C:\xampp\htdocs\polidynamics\database\db.php');    
 
-    $Query = "SELECT * FROM AULA AU INNER JOIN DISPONIBILIDAD DI ON AU.DISPONIBILIDAD = DI.ID_DISPONIBILIDAD";
-	$Resultado = mysqli_query($link, $Query);
+    $Query = "SELECT *
+    FROM AULA AU
+    INNER JOIN DISPONIBILIDAD DI ON AU.DISPONIBILIDAD = I.ID_SISPONIBILIDAD
+    WHERE username = '".$_SESSION['username']."'";
+    $Resultado = mysqli_query($link, $Query);  
 ?>
  
 <!DOCTYPE html>
@@ -23,7 +26,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <title>PoliDynamics</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="icon" href="/PoliDynamics/style/image/IconoPoli.png" />
-    <link rel="stylesheet" href="/PoliDynamics/views/administrador/style/General.css" type="text/css" >
+    <link rel="stylesheet" href="/PoliDynamics/views/docente/style/CrearSolicitudes.css" type="text/css" >
 </head>
 <body>
 
@@ -33,13 +36,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   <nav class="menu">
   <div id="sidebar-nav">   
   <ul id="Secciones">
-      <li ><a href="\PoliDynamics\views\administrador\Index.php"> Home</a></li>
+      <li ><a href="\PoliDynamics\views\administrador\Index.php"> Inicio</a></li>
       <li  ><a href="\PoliDynamics\views\administrador\vistas\tareas\ListarTareas.php"> Gestión de tareas</a></li>
       <li class="active"><a href="\PoliDynamics\views\administrador\vistas\disponibilidad\ListarDisponibilidad.php"> Gestión de disponibilidad</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\prestamo\ListarPrestamos.php"> Administración de préstamos</a></li>
       <li  ><a href="\PoliDynamics\views\administrador\vistas\solicitudes\ListarSolicitudes.php"> Administración de solicitudes</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\usuarios\ListarUsuarios.php"> Administración de usuarios</a></li>
-      <li><a href="\PoliDynamics\views\administrador\vistas\inventario\ListarInventario.php"> Administración de inventario</a></li>
+      <li  ><a href="\PoliDynamics\views\administrador\vistas\inventario\ListarInventario.php"> Administración de inventario</a></li>
       <li ><a href="\PoliDynamics\views\administrador\vistas\ListarAuditoria.php"> Auditoría</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\ListarReportes.php"> Reportes</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\ManualTecnico.php"> Manual de usuario</a></li>     
@@ -70,47 +73,51 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </div>
   </div>
 
-  <h1>GESTIÓN DE DISPONIBILIDAD DE AULAS</h1>
-
-  <button type="button" class="btn btn-warning" style="background-color: #F1C40F;border-color: #F1C40F;"><a href="CrearAula.php">Nueva aula</a></button>
-
+  <h1>CREACIÓN DE AULAS</h1>
   <br>
-	<table class="table table-bordered">
-		<thead>
-			<tr>
-                <th scope="col">Bloque</th>
-				<th scope="col">Número de aula</th>
-				<th scope="col">Estado del aula</th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php while($Filas = $Resultado->fetch_assoc()) {	
 
-			?>
-			<tr>
-				<td style="text-align: center;"><?php echo $Filas['BLOQUE'] ?></td>
-				<td style="text-align: center;"><?php echo $Filas['NUMERO_AULA'] ?></td>
-                <?php
-                 if($Filas['DISPONIBILIDAD'] == 1){
-                    echo '<td style="color:#196F3D;text-transform: uppercase;text-align: center;"><strong>'.$Filas['DESCRIPCION'].'</strong></td>';
-                 }else{
-                    echo '<td style="color:#D12B2B;text-transform: uppercase;text-align: center;"><strong>'.$Filas['DESCRIPCION'].'</strong></td>';
-                 }
-                 
-                 ?>
-		
-                <td style="width: 20%;">
-					<button type="button" class="btn btn-primary" ><a href="ModificarDisponibilidad.php?ID_AULA=<?php echo $Filas['ID_AULA'] ?>">Modificar</a></button>
+  <form method = "POST" action = "metodos/MetodoInsertar.php">
+        <div class="form-group">
+            <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Número aula*:</label><br>   
+                        <input type="text" class="form-control" name="NUMERO_AULA" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Bloque*:</label><br>   
+                        <input type="number" class="form-control" name="BLOQUE" required>
+                    </div>
+            </div>
+        </div>
 
-        </td>
-                </tr>
-			<?php } ?>
-		</tbody>
-	</table>
-  
+        <div class="form-group">
+            <div class="row">
+
+            
+                    <div class="col-md-6 mb-3" >
+                        <label>Disponibilidad*:</label><br>   
+                        <select name="DISPONIBILIDAD" class="form-control">
+                    <?php 
+                        $Query = "SELECT * FROM DISPONIBILIDAD";
+                        $Resultado = mysqli_query($link, $Query);
+                        while($Filas = $Resultado->fetch_assoc()){
+                            echo '<option value="'.$Filas["ID_DISPONIBILIDAD"].'">'.$Filas["ID_DISPONIBILIDAD"].'-'.$Filas["DESCRIPCION"].'</option>';   
+                        }
+                    ?>
+                </select>
+                <br>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <button class="btn btn-primary" type="submit"><strong>Crear aula</strong></button>
+
+    </form>
       
   </section>
 
-
 </body>
+
 </html>

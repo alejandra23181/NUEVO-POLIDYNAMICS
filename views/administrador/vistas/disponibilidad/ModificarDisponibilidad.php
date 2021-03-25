@@ -83,11 +83,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <div class="row">
                     <div class="col-md-6 mb-3">
                         <label>Bloque:</label><br>   
-                        <input type="text" class="form-control" name="BLOQUE" value="<?php echo $Filas['BLOQUE'] ?>">   
+                        <input type="text" class="form-control" name="BLOQUE" value="<?php echo $Filas['BLOQUE'] ?>" readonly>   
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Número aula:</label><br>   
-                        <input type="text" name="NUMERO_AULA"  class="form-control" value="<?php echo $Filas['NUMERO_AULA'] ?>">
+                        <input type="text" name="NUMERO_AULA"  class="form-control" value="<?php echo $Filas['NUMERO_AULA'] ?>" readonly>
 
                     </div>
             </div>
@@ -105,7 +105,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                             $Query = "SELECT * FROM DISPONIBILIDAD";
                             $Resultado = mysqli_query($link, $Query);
                             while($Filas = $Resultado->fetch_assoc()){
-                                echo '<option value="'.$Filas[ID_DISPONIBILIDAD].'">'.$Filas[DESCRIPCION].'</option>';   
+                                echo '<option value="'.$Filas["ID_DISPONIBILIDAD"].'">'.$Filas["DESCRIPCION"].'</option>';   
                             }
                         ?>
                     </select>

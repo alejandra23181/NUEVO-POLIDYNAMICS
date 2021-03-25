@@ -80,11 +80,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="form-group">
             <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label>Detalle de reporte:</label><br>   
+                        <label>Detalle de reporte*:</label><br>   
                         <input type="text" class="form-control" name="detalle" required>
                     </div>
                     <div class="col-md-6 mb-3">
-                    <label>Recomendaciones:</label><br>   
+                    <label>Recomendaciones*:</label><br>   
                         <input type="textarea" class="form-control" name="recomendaciones" required>
                     </div>
             </div>
@@ -93,13 +93,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="form-group">
             <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label>Fecha inicio:</label><br>   
-                        <input type="date" name="fechainicio"  class="form-control" value="<?php echo date("Y-m-d");?>" required>
+                        <label>Fecha inicio*:</label><br>   
+                        <input type="localdate" name="fechainicio"  class="form-control" value="<?php echo date("Y-m-d");?>" readonly>
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label>Hora inicio:</label><br>   
-                        <input type="time" name="horainicio"  class="form-control" required>
+                        <label>Hora inicio*:</label><br>   
+                        <input type="time" max="22:00:00" min="06:00:00"  name="horainicio"  class="form-control" required>
                     </div>
             </div>
         </div>
@@ -108,18 +108,18 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="form-group">
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label>Hora fin:</label><br>   
-                    <input type="time" name="horafin"  class="form-control" required>
+                    <label>Hora fin*:</label><br>   
+                    <input type="time" name="horafin"  max="22:00:00" min="06:00:00"  class="form-control" required>
                 </div>
 
             <div class="col-md-6 mb-3">
-                <label>Solicitud:</label><br>
+                <label>Solicitud*:</label><br>
                 <select name="solicitud" class="form-control">
                     <?php 
-                        $Query = "SELECT ID_SOLICITUD, DESCRIPCION FROM SOLICITUD";
+                        $Query = "SELECT ID_SOLICITUD, DESCRIPCION FROM SOLICITUD WHERE ESTADO=1";
                         $Resultado = mysqli_query($link, $Query);
                         while($Filas = $Resultado->fetch_assoc()){
-                            echo '<option value="'.$Filas[ID_SOLICITUD].'">'.$Filas[ID_SOLICITUD].'-'.$Filas[DESCRIPCION].'</option>';   
+                            echo '<option value="'.$Filas['ID_SOLICITUD'].'">'.$Filas['ID_SOLICITUD'].'-'.$Filas['DESCRIPCION'].'</option>';   
                         }
                     ?>
                 </select>
@@ -132,15 +132,20 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="form-group">
             <div class="row">
                 <div class="col-md-6 mb-3" style="margin-left: -166px;width: 504px;">
-                    <label>Tipo de tarea:</label><br>   
+                    <label>Tipo de tarea*:</label><br>    
                     <select name="tipotarea" class="form-control">
-                    <?php 
-                        $Query = "SELECT ID_TIPO_TAREA, DESCRIPCION_TAREA FROM TIPO_TAREA";
-                        $Resultado = mysqli_query($link, $Query);
-                        while($Filas = $Resultado->fetch_assoc()){
-                            echo '<option value="'.$Filas[ID_TIPO_TAREA].'">'.$Filas[DESCRIPCION_TAREA].'</option>';   
-                        }
-                    ?>
+                    <option value="0">Seleccione una de las opciones:</option>
+                    <option value="1">Servicio aplicaciones</option>
+                    <option value="2">Servicio pc</option>
+                    <option value="3">Servicio redes</option>
+                </select>
+                </div>
+
+
+                </select>
+                </div>
+
+
                 </select>
                 </div>
 
@@ -150,7 +155,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
         
 
-        <button class="btn btn-primary" style="margin-left: 210px;margin-top: 10px;" type="submit"><strong> Crear tarea</strong></button>
+        <button class="btn btn-primary" style="margin-left: 510px;margin-top: 10px;" type="submit"><strong> Crear tarea</strong></button>
 
 
     </form>

@@ -10,31 +10,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 ?>
 
 <?php
-include('C:\xampp\htdocs\polidynamics\database\db.php');
+include('C:\xampp\htdocs\polidynamics\database\db.php'); 
 
-date_default_timezone_set("America/Mexico_city");
-$fecha_actual=date("Y-m-d H:i:s");
-@$ID_USUARIO=$_GET['ID'];
-$consulta="SELECT * FROM usuario WHERE ID_USUARIO = '$ID_USUARIO'";
-$ejecutar = mysqli_query($link, $consulta);
-
-while($row=mysqli_fetch_array($ejecutar)){
-    
-    $ID_USUARIO=$row[0];
-    $PRIMER_NOMBRE_USUARIO=$row[1];
-    $SEGUNDO_NOMBRE_USUARIO=$row[2];
-    $PRIMER_APELLIDO_USUARIO=$row[3];
-    $SEGUNDO_APELLIDO_USUARIO=$row[4];
-    $TELEFONO=$row[5];
-    $EMAIL=$row[6];
-    $TIPO_DOCUMENTO=$row[7];
-    $IDENTIFICACION=$row[8];
-    $GENERO=$row[9];
-    $PERFIL=$row[10];
-    $username=$row[11];
-    $password=$row[12];
-
-}
 
 $Query = "SELECT * FROM USUARIO US
 INNER JOIN GENERO GE ON US.GENERO = GE.ID_GENERO
@@ -62,17 +39,17 @@ $ejecutar = mysqli_query($link,$Query);
   <nav class="menu">
   <div id="sidebar-nav">   
   <ul id="Secciones">
-      <li ><a href="\PoliDynamics\views\administrador\Index.php"> Home</a></li>
+      <li ><a href="\PoliDynamics\views\administrador\Index.php"> Inicio</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\tareas\ListarTareas.php"> Gestión de tareas</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\disponibilidad\ListarDisponibilidad.php"> Gestión de disponibilidad</a></li>
-      <li><a href="\PoliDynamics\views\administrador\vistas\prestamo\ListarPrestamos.php"> Administración de prestamos</a></li>
+      <li><a href="\PoliDynamics\views\administrador\vistas\prestamo\ListarPrestamos.php"> Administración de préstamos</a></li>
       <li  ><a href="\PoliDynamics\views\administrador\vistas\solicitudes\ListarSolicitudes.php"> Administración de solicitudes</a></li>
       <li class="active"><a href="\PoliDynamics\views\administrador\vistas\usuarios\ListarUsuarios.php"> Administración de usuarios</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\inventario\ListarInventario.php"> Administración de inventario</a></li>
-      <li ><a href="\PoliDynamics\views\administrador\vistas\ListarAuditoria.php"> Auditoria</a></li>
+      <li ><a href="\PoliDynamics\views\administrador\vistas\ListarAuditoria.php"> Auditoría</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\ListarReportes.php"> Reportes</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\ManualTecnico.php"> Manual de usuario</a></li>     
-      <li><a href="/polidynamics/views/login/Login.php"> Cerrar sesión</a></li>
+      <li><a href="\PoliDynamics\Index.php"> Cerrar sesión</a></li>
       
     </ul>
 
@@ -101,21 +78,20 @@ $ejecutar = mysqli_query($link,$Query);
 
   <h1>CREACIÓN DE USUARIOS</h1>
   <br>
-  <input type="hidden" name="ID_USUARIO" id="ID_USUARIO" value="<?php echo $ID_USUARIO?>"> 
 
   <form action="metodos/MetodoInsertar.php" method="POST" accept-charset="utf-8">
         
   <div class="form-group">
             <div class="row"> 
         <div class="col-md-6 mb-3">
-            <label for="PRIMER_NOMBRE_USUARIO">Primer nombre:</label><br>
-            <input class="form-control" type="text" name="PRIMER_NOMBRE_USUARIO" value="" placeholder="">
+            <label for="PRIMER_NOMBRE_USUARIO">Primer nombre*:</label><br>
+            <input class="form-control" type="text" name="PRIMER_NOMBRE_USUARIO" value="" placeholder="" required>
             
             </div>
 
             <div class="col-md-6 mb-3">
             <label for="SEGUNDO_NOMBRE_USUARIO">Segundo nombre:</label><br>
-            <input class="form-control" type="text" name="SEGUNDO_NOMBRE_USUARIO" value="" placeholder="">
+            <input class="form-control" type="text" name="SEGUNDO_NOMBRE_USUARIO" value="" placeholder="" >
             </div>
             </diV>
             </div>
@@ -124,13 +100,13 @@ $ejecutar = mysqli_query($link,$Query);
 <div class="form-group">
             <div class="row">
             <div class="col-md-6 mb-3">
-            <label for="PRIMER_APELLIDO_USUARIO">Primer apellido:</label><br>
-            <input class="form-control" type="text" name="PRIMER_APELLIDO_USUARIO" value="" placeholder="">
+            <label for="PRIMER_APELLIDO_USUARIO">Primer apellido*:</label><br>
+            <input class="form-control" type="text" name="PRIMER_APELLIDO_USUARIO" value="" placeholder="" required>
             </div>
 
             <div class="col-md-6 mb-3">
             <label for="SEGUNDO_APELLIDO_USUARIO">Segundo apellido:</label><br>
-            <input class="form-control" type="text" name="SEGUNDO_APELLIDO_USUARIO" value="" placeholder="">
+            <input class="form-control" type="text" name="SEGUNDO_APELLIDO_USUARIO" value="" placeholder="" >
            
             </div>
             </diV>
@@ -139,14 +115,14 @@ $ejecutar = mysqli_query($link,$Query);
 <div class="form-group">
             <div class="row">
             <div class="col-md-6 mb-3">
-            <label for="TELEFONO">Teléfono:</label><br>
-            <input class="form-control" type="text" name="TELEFONO" value="" placeholder="">
+            <label for="TELEFONO">Teléfono*:</label><br>
+            <input class="form-control" type="number" name="TELEFONO" value="" placeholder="" required>
             
             </div>
 
             <div class="col-md-6 mb-3">
-            <label for="EMAIL">Email:</label><br>
-            <input class="form-control" type="text" name="EMAIL" value="" placeholder="">
+            <label for="EMAIL">Email*:</label><br>
+            <input class="form-control" type="email" name="EMAIL" value="" placeholder="" required>
             </div>
 
             </div>
@@ -155,14 +131,14 @@ $ejecutar = mysqli_query($link,$Query);
             <div class="form-group">
             <div class="row">
             <div class="col-md-6 mb-3">
-            <label>Tipo documento:</label> <br>
-                <select class="form-control" name="TIPO_DOCUMENTO" value="">
+            <label>Tipo documento*:</label> <br>
+                <select class="form-control" name="TIPO_DOCUMENTO" value="" required>
                     <option value="0">Seleccione una de las opciones:</option>
                     <?php 
                         $Query = "SELECT ID_TIPO_DOCUMENTO, DESCRIPCION_TIPO FROM TIPO_DOCUMENTO";
                         $Resultado = mysqli_query($link, $Query);
                         while($Filas = $Resultado->fetch_assoc()){
-                            echo '<option value="'.$Filas[ID_TIPO_DOCUMENTO].'">'.$Filas[DESCRIPCION_TIPO].'</option>';   
+                            echo '<option value="'.$Filas["ID_TIPO_DOCUMENTO"].'">'.$Filas["DESCRIPCION_TIPO"].'</option>';   
                         }
                     ?>
                 </select>
@@ -170,8 +146,8 @@ $ejecutar = mysqli_query($link,$Query);
             </div>
 
             <div class="col-md-6 mb-3">
-            <label for="IDENTIFICACION">Identificación:</label><br>
-            <input class="form-control" type="text" name="IDENTIFICACION" value="" placeholder="">
+            <label for="IDENTIFICACION">Identificación*:</label><br>
+            <input class="form-control" type="number" name="IDENTIFICACION" value="" placeholder="" required>
             
             </div>
 
@@ -182,14 +158,14 @@ $ejecutar = mysqli_query($link,$Query);
 <div class="form-group">
             <div class="row">
             <div class="col-md-6 mb-3">
-            <label>Género:</label><br>
-                <select class="form-control" name="GENERO" value="">
+            <label>Género*:</label><br>
+                <select class="form-control" name="GENERO" value="" required>
                     <option value="0">Seleccione una de las opciones:</option>
                     <?php 
                         $Query = "SELECT ID_GENERO, DESCRIPCION_GENERO FROM GENERO";
                         $Resultado = mysqli_query($link, $Query);
                         while($Filas = $Resultado->fetch_assoc()){
-                            echo '<option value="'.$Filas[ID_GENERO].'">'.$Filas[DESCRIPCION_GENERO].'</option>';   
+                            echo '<option value="'.$Filas["ID_GENERO"].'">'.$Filas["DESCRIPCION_GENERO"].'</option>';   
                         }
                     ?>
                 </select>
@@ -197,14 +173,14 @@ $ejecutar = mysqli_query($link,$Query);
             </div>
 
             <div class="col-md-6 mb-3">
-            <label>Perfil:</label><br>
-                <select class="form-control" name="PERFIL" value="">
+            <label>Perfil*:</label><br>
+                <select class="form-control" name="PERFIL" value="" required>
                     <option value="0">Seleccione una de las opciones:</option>
                     <?php 
                         $Query = "SELECT ID_PERFIL, DESCRIPCION_PERFIL FROM PERFIL_USUARIO";
                         $Resultado = mysqli_query($link, $Query);
                         while($Filas = $Resultado->fetch_assoc()){
-                            echo '<option value="'.$Filas[ID_PERFIL].'">'.$Filas[DESCRIPCION_PERFIL].'</option>';   
+                            echo '<option value="'.$Filas["ID_PERFIL"].'">'.$Filas["DESCRIPCION_PERFIL"].'</option>';   
                         }
                     ?>
                 </select>
@@ -218,14 +194,14 @@ $ejecutar = mysqli_query($link,$Query);
             <div class="row">
 
             <div class="col-md-6 mb-3">
-            <label for="USERNAME">Nombre usuario:</label><br>
-            <input class="form-control" type="text" name="username" value="" placeholder="">
+            <label for="USERNAME">Nombre usuario*:</label><br>
+            <input class="form-control" type="text" name="username" value="" placeholder="" required>
             
             </div>
 
             <div class="col-md-6 mb-3">
-            <label for="PASSWORD">Clave:</label>
-            <input class="form-control" type="text" name="password" value="" placeholder="">
+            <label for="PASSWORD">Clave*:</label>
+            <input class="form-control" type="text" name="password" value="" placeholder="" required>
             
             </div>
 
