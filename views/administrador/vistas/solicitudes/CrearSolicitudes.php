@@ -85,8 +85,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         <input type="text" class="form-control" name="descripcion" required>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label>Fecha inicio*:</label><br>   
-                        <input type="date" name="fecha"  class="form-control" value="<?php echo date("Y-m-d");?>" readonly>
+                        <label>Fecha esperada*:</label><br>   
+                        <input type="date" name="fecha"  class="form-control" value="<?php echo date("Y-m-d");?>" required>
                     </div>
             </div>
         </div>
