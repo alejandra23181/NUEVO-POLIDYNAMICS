@@ -24,16 +24,17 @@
         <div class="contenedor">
             <div id="marca">
 
-            <h1><span class="resaltado"> Poli </span> Dynamics</h1>
+            <h1 style="font-size: 30px;"><span class="resaltado"> Poli </span> Dynamics</h1>
         </div>
 
         <nav>
             <ul>
-            <li class="actual"><a href="\PoliDynamics\Index.php">Inicio</a></li>
+            <li><a href="\PoliDynamics\Index.php">Inicio</a></li>
                 <li><a href="\PoliDynamics\secciones\nosotros.php">Acerca de nosotros</a></li>
                 <li class="actual"><a href="\PoliDynamics\secciones\servicios.php">Nuestros servicios</a></li>
-                <li><a href="\PoliDynamics\secciones\clientes.php">A quien servimos</a></li>
-                <li class="actual"><a href="\PoliDynamics\views\login\Login.php">Inicio de sesión</a></li>
+                <li><a href="\PoliDynamics\secciones\clientes.php">A quién servimos</a></li>
+                <li><a href="\PoliDynamics\secciones\disponibilidad.php">Disponibilidad aulas</a></li>
+                <li><a href="\PoliDynamics\views\login\Login.php">Inicio de sesión</a></li>
             </ul>
         </nav>
         </div>

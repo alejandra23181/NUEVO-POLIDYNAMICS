@@ -98,7 +98,7 @@ $username = mysqli_real_escape_string($link,$_POST['username']);
             <div id="marca">
 
             <h1 style="
-    color: white;
+    color: white;font-size: 30px;
 "><span class="resaltado"> Poli </span> Dynamics</h1>
         </div>
 
@@ -107,7 +107,8 @@ $username = mysqli_real_escape_string($link,$_POST['username']);
             <li ><a href="\PoliDynamics\Index.php">Inicio</a></li>
                 <li><a href="\PoliDynamics\secciones\nosotros.php">Acerca de nosotros</a></li>
                 <li><a href="\PoliDynamics\secciones\servicios.php">Nuestros servicios</a></li>
-                <li ><a href="\PoliDynamics\secciones\clientes.php">A quien servimos</a></li>
+                <li ><a href="\PoliDynamics\secciones\clientes.php">A quién servimos</a></li>
+                <li><a href="\PoliDynamics\secciones\disponibilidad.php">Disponibilidad aulas</a></li>
                 <li class="actual"><a href="\PoliDynamics\views\login\Login.php">Inicio de sesión</a></li>
             </ul>
         </nav>
@@ -123,12 +124,12 @@ $username = mysqli_real_escape_string($link,$_POST['username']);
     <div class="container" style="margin-top: -140px;">
         <form  class="form-signin" method="post">
             <div class="form-group ">
-                <label>Usuario:</label>
+                <label>Usuario*:</label>
                 <input type="text" name="username"  class="form-control" >
                 <span class="help-block"></span>
             </div>    
             <div class="form-group ">
-                <label>Clave:</label>
+                <label>Clave*:</label>
                 <input type="password"   name="password" class="form-control">
                 <span class="help-block"></span>
             </div>
@@ -137,6 +138,9 @@ $username = mysqli_real_escape_string($link,$_POST['username']);
             </div>
         </form>
     </div>    
+    <footer>
+        <p>Poli Dynamics &copy; Software institucional </p>
+    </footer>
 </body>
     </body>
 </html>

@@ -81,12 +81,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="form-group">
             <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label>Descripcion:</label><br>   
+                        <label>Descripción*:</label><br>   
                         <input type="text" class="form-control" name="descripcion" required>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label>Fecha esperada:</label><br>   
-                        <input type="date" name="fecha"  class="form-control" value="<?php echo date("Y-m-d");?>" required>
+                        <label>Fecha inicio*:</label><br>   
+                        <input type="date" name="fecha"  class="form-control" value="<?php echo date("Y-m-d");?>" readonly>
                     </div>
             </div>
         </div>
@@ -94,14 +94,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="form-group">
             <div class="row">
                     <div class="col-md-6 mb-3">
-                    <label>Hora esperada:</label><br>   
-                    <input type="time" class="form-control" name="hora" required>
+                    <label>Hora esperada*:</label><br>   
+                    <input type="time" max="22:00:00" min="06:00:00" class="form-control" name="hora" required>
                     </div>
-                    <input  type="hidden" name="usuario" max="22:00:00" min="06:00:00" value="<?php echo htmlspecialchars($_SESSION["username"]); ?>">
+                    <input  type="hidden" name="usuario" value="<?php echo htmlspecialchars($_SESSION["username"]); ?>">
 
                     <div class="col-md-6 mb-3">
 
-                    <label>Categoria:</label><br>
+                    <label>Categoria*:</label><br>
                     <select name="categoria" class="form-control">
                         <option value="0">Seleccione una de las opciones:</option>
                         <?php 
@@ -120,7 +120,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="form-group">
             <div class="row">
                     <div class="col-md-6 mb-3">
-                    <label>Aula:</label><br>
+                    <label>Aula*:</label><br>
                     <select name="aula" class="form-control">
                         <option value="0">Seleccione una de las opciones:</option>
                         <?php 
@@ -133,7 +133,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     </select>
                     </div>
                     <div class="col-md-6 mb-3">
-                    <label>Estado:</label><br>
+                    <label>Estado*:</label><br>
                     <select name="estado" class="form-control" readonly>
                         <?php 
                             $Query = "SELECT ID_ESTADO, DESCRIPCION_ESTADO FROM ESTADO WHERE ID_ESTADO = 1";

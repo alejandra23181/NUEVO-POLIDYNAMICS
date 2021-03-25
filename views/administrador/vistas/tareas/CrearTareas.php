@@ -115,6 +115,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <div class="col-md-6 mb-3">
                 <label>Solicitud*:</label><br>
                 <select name="solicitud" class="form-control">
+                <option value="0">Seleccione una de las opciones:</option>
+
                     <?php 
                         $Query = "SELECT ID_SOLICITUD, DESCRIPCION FROM SOLICITUD WHERE ESTADO=1";
                         $Resultado = mysqli_query($link, $Query);

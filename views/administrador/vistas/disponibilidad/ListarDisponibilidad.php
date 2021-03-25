@@ -101,6 +101,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		
                 <td style="width: 20%;">
 					<button type="button" class="btn btn-primary" ><a href="ModificarDisponibilidad.php?ID_AULA=<?php echo $Filas['ID_AULA'] ?>">Modificar</a></button>
+          <button type="button" class="btn btn-danger" ><a href="metodos/MetodoEliminar.php?ID_AULA=<?php echo $Filas['ID_AULA'] ?>">Desactivar</a></button>			
+
 
         </td>
                 </tr>

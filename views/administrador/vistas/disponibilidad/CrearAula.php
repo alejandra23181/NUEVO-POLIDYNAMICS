@@ -79,14 +79,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   <form method = "POST" action = "metodos/MetodoInsertar.php">
         <div class="form-group">
             <div class="row">
+            <div class="col-md-6 mb-3">
+                        <label>Bloque*:</label><br>   
+                        <input type="text" class="form-control" name="BLOQUE" required>
+                    </div>
                     <div class="col-md-6 mb-3">
                         <label>Número aula*:</label><br>   
-                        <input type="text" class="form-control" name="NUMERO_AULA" required>
+                        <input type="number" class="form-control" name="NUMERO_AULA" required>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label>Bloque*:</label><br>   
-                        <input type="number" class="form-control" name="BLOQUE" required>
-                    </div>
+                    
             </div>
         </div>
 

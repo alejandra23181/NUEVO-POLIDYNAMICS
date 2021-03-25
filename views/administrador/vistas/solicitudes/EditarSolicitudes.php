@@ -10,7 +10,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 ?>
 
 <?php
-    include('C:\xampp\htdocs\polidynamics\database\db.php');
+
+
+include('C:\xampp\htdocs\polidynamics\database\db.php');    
+
     $id = $_GET['ID_SOLICITUD'];              
     $QuerySQL = "SELECT * FROM SOLICITUD SO
 	INNER JOIN USUARIO US ON SO.USUARIO = US.ID_USUARIO
@@ -39,17 +42,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   <nav class="menu">
   <div id="sidebar-nav">   
   <ul id="Secciones">
-      <li ><a href="\PoliDynamics\views\administrador\Index.php"> Home</a></li>
+      <li ><a href="\PoliDynamics\views\administrador\Index.php"> Inicio</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\tareas\ListarTareas.php"> Gestión de tareas</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\disponibilidad\ListarDisponibilidad.php"> Gestión de disponibilidad</a></li>
-      <li><a href="\PoliDynamics\views\administrador\vistas\prestamo\ListarPrestamos.php"> Administración de prestamos</a></li>
+      <li><a href="\PoliDynamics\views\administrador\vistas\prestamo\ListarPrestamos.php"> Administración de préstamos</a></li>
       <li  class="active"><a href="\PoliDynamics\views\administrador\vistas\solicitudes\ListarSolicitudes.php"> Administración de solicitudes</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\usuarios\ListarUsuarios.php"> Administración de usuarios</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\inventario\ListarInventario.php"> Administración de inventario</a></li>
-      <li ><a href="\PoliDynamics\views\administrador\vistas\ListarAuditoria.php"> Auditoria</a></li>
+      <li ><a href="\PoliDynamics\views\administrador\vistas\ListarAuditoria.php"> Auditoría</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\ListarReportes.php"> Reportes</a></li>
       <li><a href="\PoliDynamics\views\administrador\vistas\ManualTecnico.php"> Manual de usuario</a></li>     
-      <li><a href="/polidynamics/views/login/Login.php"> Cerrar sesión</a></li>
+      <li><a href="\PoliDynamics\Index.php"> Cerrar sesión</a></li>
       
     </ul>
   </div>
@@ -83,12 +86,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <input type="hidden" name="idsolicitud" value="<?php echo $Filas['ID_SOLICITUD'] ?>">
             <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label>Descripcion:</label><br>   
-                        <input type="text" class="form-control" name="descripcion" value="<?php echo $Filas['DESCRIPCION'] ?>">   
+                        <label>Descripcion*:</label><br>   
+                        <input type="text" class="form-control" name="descripcion" value="<?php echo $Filas['DESCRIPCION'] ?>" required>   
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label>Fecha esperada:</label><br>   
-                        <input type="date" name="fecha"  class="form-control" value="<?php echo $Filas['FECHA_CREACION'] ?>">
+                        <label>Fecha esperada*:</label><br>   
+                        <input type="date" name="fecha"  class="form-control" value="<?php echo $Filas['FECHA_CREACION'] ?>" required>
 
                     </div>
             </div>
@@ -97,17 +100,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="form-group">
             <div class="row">
                     <div class="col-md-6 mb-3">
-                    <label>Hora esperada:</label><br>   
-                    <input type="time" name="hora" class="form-control" value="<?php echo $Filas['HORA'] ?>">
+                    <label>Hora esperada*:</label><br>   
+                    <input type="time" max="22:00:00" min="06:00:00" step="1" name="hora" class="form-control" value="<?php echo $Filas['HORA'] ?>" required>
                     </div>
                     <input  type="hidden" name="usuario" value="<?php echo $Filas['username'] ?>">
 
                     
                     <div class="col-md-6 mb-3">
 
-                    <label>Estado:</label><br>
-                    <select name="estado" class="form-control">
-                    <option value="<?php echo $Filas['ID_ESTADO'] ?>" disabled selected hidden><?php echo $Filas['DESCRIPCION_ESTADO'] ?></option>
+                    <label>Estado*:</label><br>
+                    <select name="estado" class="form-control" required>
+                    <option  disabled selected hidden value="<?php echo $Filas['ID_ESTADO'] ?>"><?php echo $Filas['DESCRIPCION_ESTADO'] ?></option>
                     <?php 
                             $Query = "SELECT ID_ESTADO, DESCRIPCION_ESTADO FROM ESTADO";
                             $Resultado = mysqli_query($link, $Query);

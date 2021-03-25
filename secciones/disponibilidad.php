@@ -1,3 +1,13 @@
+
+<?php 
+    include('C:\xampp\htdocs\polidynamics\database\db.php');    
+
+ 
+$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+    $Query = "SELECT * FROM AULA AU INNER JOIN DISPONIBILIDAD DI ON AU.DISPONIBILIDAD = ID_DISPONIBILIDAD";
+	$Resultado = mysqli_query($link, $Query);
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,53 +42,59 @@
             <li ><a href="\PoliDynamics\Index.php">Inicio</a></li>
                 <li><a href="\PoliDynamics\secciones\nosotros.php">Acerca de nosotros</a></li>
                 <li><a href="\PoliDynamics\secciones\servicios.php">Nuestros servicios</a></li>
-                <li class="actual"><a href="\PoliDynamics\secciones\clientes.php">A quién servimos</a></li>
-                <li><a href="\PoliDynamics\secciones\disponibilidad.php">Disponibilidad aulas</a></li>
+                <li><a href="\PoliDynamics\secciones\clientes.php">A quien servimos</a></li>
+                <li  class="actual"><a href="\PoliDynamics\secciones\disponibilidad.php">Disponibilidad aulas</a></li>
                 <li ><a href="\PoliDynamics\views\login\Login.php">Inicio de sesión</a></li>
             </ul>
         </nav>
         </div>
     </header>
-
 	<br />
-    <div class="clientes">
-    <h10><strong><center>A QUIÉN SERVIMOS</center></strong></h10>
 
-    <section id="cajas">
-        <div class="contenedor">
-           <div class="caja" style="margin-left: 52px;">
-                <img src="../img/Icon-1.PNG">
-                <p></p>
-                <h11><b><center>ADMINISTRATIVOS</center></b></h11>
-                <p></p>
-                <p>El politécnico colombiano Jaime Isaza Cadavid, cuenta con una personal administrativo o técnico,
-                    quienes son los encargados de dar de alta o baja a las solicitudes presentadas por los estudiantes y profesores.   
-                </p> 
-            </div> 
-            <div class="caja">
-                <img src="../img/Icon-2.PNG">
-                <p></p>
-                <h11><b><center>PROFESORES</center></b></h11>
-                <p></p>
-                <p>Los docentes de la institución universitaria Politécnico Colombiano Jaime Isaza Cadavid, realizan
-                    préstamos de aulas y componentes electrónicos para el uso de sus clases. 
-                </p> 
-            </div> 
-            <div class="caja">
-                <img src="../img/Icon-3.PNG">
-                <p></p>
-                <h11><b><center>ALUMNOS</center></b></h11>
-                <p></p>
-                <p>El Politécnico Colombiano Jaime Isaza Cadavid, cuenta con computadores de escritorio en todos los salones 
-                    del primero y segundo piso del bloque número trece.
-                </p> 
-            </div> 
+  <br>
+
+    <div class="nosotros">
+    <h10><strong><center>DISPONIBILIDAD AULAS</center></strong></h10>
+
+    <br>
+
+    <section id="cajitas">
+        <div class="contenedores">
+        <table class="table table-bordered">
+		<thead>
+			<tr>
+                <th   style="text-align: center;" scope="col">Bloque</th>
+				<th style="text-align: center;" scope="col">Número de aula</th>
+				<th style="text-align: center;" scope="col">Estado del aula</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			<?php while($Filas = $Resultado->fetch_assoc()) {	
+
+			?>
+
+			<tr>
+				<td style="text-align: center;"><?php echo $Filas['BLOQUE'] ?></td>
+				<td style="text-align: center;"><?php echo $Filas['NUMERO_AULA'] ?></td>
+                <?php
+                 if($Filas['DISPONIBILIDAD'] == 1){
+                    echo '<td style="color:#196F3D;text-transform: uppercase;text-align: center;"><strong>'.$Filas['DESCRIPCION'].'</strong></td>';
+                 }else{
+                    echo '<td style="color:#D12B2B;text-transform: uppercase;text-align: center;"><strong>'.$Filas['DESCRIPCION'].'</strong></td>';
+                 }
+                 
+                 ?>
+			</tr>
+			<?php } ?>
+		</tbody>
+	</table>
+            
         </div>        
     </section>
     </div>
-     <footer>
+    <footer >
         <p>Poli Dynamics &copy; Software institucional </p>
     </footer>
-
 </body>
 </html>
