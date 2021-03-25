@@ -10,8 +10,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 ?>
 
 <?php
-    include('C:\xampp\htdocs\polidynamics\database\db.php');
-    $id = $_GET['ID_SOLICITUD'];
+
+
+include('C:\xampp\htdocs\polidynamics\database\db.php');    
+
+    $id = $_GET['ID_SOLICITUD'];              
     $QuerySQL = "SELECT * FROM SOLICITUD SO
 	INNER JOIN USUARIO US ON SO.USUARIO = US.ID_USUARIO
 	INNER JOIN CATEGORIA CA ON SO.CATEGORIA = CA.ID_CATEGORIA
@@ -39,7 +42,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   <nav class="menu">
   <div id="sidebar-nav">   
   <ul id="Secciones">
-    <li ><a href="/PoliDynamics/views/docente/Index.php"> Home</a></li>
+  <li ><a href="/PoliDynamics/views/docente/Index.php"> Home</a></li>
       <li class="active" ><a href="\PoliDynamics\views\docente\vistas\solicitudes\ListarSolicitudes.php"> Gestión de solicitudes</a></li>
       <li ><a href="\PoliDynamics\views\docente\vistas\ListarTareas.php"> Seguimiento de solicitudes</a></li>
       <li ><a href="\PoliDynamics\views\docente\vistas\prestamo\ListarPrestamos.php"> Gestión de prestamos</a></li>
@@ -48,8 +51,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
       <li ><a href="\PoliDynamics\views\docente\vistas\ListarReportes.php"> Reportes</a></li>
       <li><a href="\PoliDynamics\views\docente\vistas\ManualUsuario.php"> Manual de usuario</a></li>     
       <li><a href="/polidynamics/views/login/Login.php"> Cerrar sesión</a></li>
+      
     </ul>
-
   </div>
 </nav>
     </section>
@@ -81,12 +84,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <input type="hidden" name="idsolicitud" value="<?php echo $Filas['ID_SOLICITUD'] ?>">
             <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label>Descripcion:</label><br>   
-                        <input type="text" class="form-control" name="descripcion" value="<?php echo $Filas['DESCRIPCION'] ?>">   
+                        <label>Descripcion*:</label><br>   
+                        <input type="text" class="form-control" name="descripcion" value="<?php echo $Filas['DESCRIPCION'] ?>" required>   
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label>Fecha esperada:</label><br>   
-                        <input type="date" name="fecha"  class="form-control" value="<?php echo $Filas['FECHA_CREACION'] ?>">
+                        <label>Fecha esperada*:</label><br>   
+                        <input type="date" name="fecha"  class="form-control" value="<?php echo $Filas['FECHA_CREACION'] ?>" required>
 
                     </div>
             </div>
@@ -95,22 +98,22 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="form-group">
             <div class="row">
                     <div class="col-md-6 mb-3">
-                    <label>Hora esperada:</label><br>   
-                    <input type="time" name="hora" class="form-control" value="<?php echo $Filas['HORA'] ?>">
+                    <label>Hora esperada*:</label><br>   
+                    <input type="time" max="22:00:00" min="06:00:00" step="1" name="hora" class="form-control" value="<?php echo $Filas['HORA'] ?>" required>
                     </div>
                     <input  type="hidden" name="usuario" value="<?php echo $Filas['username'] ?>">
 
                     
                     <div class="col-md-6 mb-3">
 
-                    <label>Aula:</label><br>
-                    <select name="aula" class="form-control">
-                    <option value="<?php echo $Filas['NUMERO_AULA'] ?>" disabled selected hidden><?php echo $Filas['NUMERO_AULA'] ?></option>
-                        <?php 
-                            $Query = "SELECT ID_AULA, NUMERO_AULA FROM AULA";
+                    <label>Estado*:</label><br>
+                    <select name="estado" class="form-control" readonly>
+                    <option  disabled selected hidden value="<?php echo $Filas['ID_ESTADO'] ?>"><?php echo $Filas['DESCRIPCION_ESTADO'] ?></option>
+                    <?php 
+                            $Query = "SELECT ID_ESTADO, DESCRIPCION_ESTADO FROM ESTADO";
                             $Resultado = mysqli_query($link, $Query);
                             while($Filas = $Resultado->fetch_assoc()){
-                                echo '<option value="'.$Filas[ID_AULA].'">'.$Filas[NUMERO_AULA].'</option>';   
+                                echo '<option value="'.$Filas["ID_ESTADO"].'">'.$Filas["DESCRIPCION_ESTADO"].'</option>';   
                             }
                         ?>
                     </select>

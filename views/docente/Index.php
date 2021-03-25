@@ -16,32 +16,30 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <title>PoliDynamics</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="icon" href="/PoliDynamics/style/image/IconoPoli.png" />
-    <link rel="stylesheet" href="style/PerfilDocente.css" type="text/css" >
+    <link rel="stylesheet" href="style/General.css" type="text/css" >
 </head>
 <body>
 
-    <section id="sidebar"> 
-    <div class="white-label">
+  <section id="sidebar"> 
+  <div class="white-label">
   </div> 
-  <nav class="menu">
   <div id="sidebar-nav">   
   <ul id="Secciones">
-    <li class="active"><a href="/PoliDynamics/views/docente/Index.php"> Home</a></li>
+  <li class="active"><a href="/PoliDynamics/views/docente/Index.php"> Home</a></li>
       <li ><a href="\PoliDynamics\views\docente\vistas\solicitudes\ListarSolicitudes.php"> Gestión de solicitudes</a></li>
-      <li><a href="\PoliDynamics\views\docente\vistas\ListarTareas.php"> Seguimiento de solicitudes</a></li>
+      <li ><a href="\PoliDynamics\views\docente\vistas\ListarTareas.php"> Seguimiento de solicitudes</a></li>
       <li ><a href="\PoliDynamics\views\docente\vistas\prestamo\ListarPrestamos.php"> Gestión de prestamos</a></li>
-      <li><a href="\PoliDynamics\views\docente\vistas\ListarDisponibilidad.php"> Disponibilidad</a></li>
-      <li><a href="\PoliDynamics\views\docente\vistas\ListarAuditoria.php"> Auditoria</a></li>
-      <li><a href="\PoliDynamics\views\docente\vistas\ListarReportes.php"> Reportes</a></li>
+      <li ><a href="\PoliDynamics\views\docente\vistas\ListarDisponibilidad.php"> Disponibilidad</a></li>
+      <li ><a href="\PoliDynamics\views\docente\vistas\ListarAuditoria.php"> Auditoria</a></li>
+      <li ><a href="\PoliDynamics\views\docente\vistas\ListarReportes.php"> Reportes</a></li>
       <li><a href="\PoliDynamics\views\docente\vistas\ManualUsuario.php"> Manual de usuario</a></li>     
       <li><a href="/polidynamics/views/login/Login.php"> Cerrar sesión</a></li>
+      
     </ul>
   </div>
-</nav>
-    </section>
-
-    <section id="content">
-    <div id="header">
+  </section>
+  <section id="content">
+  <div id="header">
     <div class="header-nav">
 
       <div class="nav">
@@ -57,9 +55,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </div>
   </div>
 
-        
-    </section>
+  <h1 style="text-transform: uppercase;">BIENVENID@ <?php echo htmlspecialchars($_SESSION["username"]); ?></h1>
 
+  <img style="margin-top: 24px;margin-left: 388px;" src="\PoliDynamics\img\home.jpg">
+
+ 
+</section>
 
 </body>
 </html>

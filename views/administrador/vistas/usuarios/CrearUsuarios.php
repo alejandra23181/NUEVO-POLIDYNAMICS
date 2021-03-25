@@ -76,8 +76,7 @@ $ejecutar = mysqli_query($link,$Query);
     </div>
   </div>
 
-  <h1>CREACIÓN DE USUARIOS</h1>
-  <br>
+  <h1 style="margin-bottom: 13px;margin-top: 58px;">CREACIÓN DE USUARIOS</h1>
 
   <form action="metodos/MetodoInsertar.php" method="POST" accept-charset="utf-8">
         

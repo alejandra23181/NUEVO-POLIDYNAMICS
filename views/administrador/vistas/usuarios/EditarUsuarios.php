@@ -127,7 +127,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             </div>
             </div>
         
-        <button class="btn btn-primary" type="submit"><strong> Crear usuario</strong></button>
+        <button class="btn btn-primary" type="submit"><strong> Modificar usuario</strong></button>
         
     </form>
     <?php } ?>
