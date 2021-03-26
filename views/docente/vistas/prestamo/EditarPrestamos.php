@@ -79,7 +79,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Fecha prestamo*:</label><br>   
-                        <input type="date" name="fecha_esperada"  class="form-control" value="<?php echo $Filas['FECHA_PRESTAMO_ESPERADA'] ?>">
+                        <input type="date" name="fecha_esperada"  class="form-control" Min="<?php echo date("Y-m-d");?>" value="<?php echo $Filas['FECHA_PRESTAMO_ESPERADA'] ?>">
                     </div>
             </div>
         </div>

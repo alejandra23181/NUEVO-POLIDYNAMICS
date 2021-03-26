@@ -84,7 +84,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Fecha esperada*:</label><br>   
-                        <input type="date" name="fecha"  class="form-control" value="<?php echo date("Y-m-d");?>" required>
+                        <input type="date" name="fecha"  class="form-control" Min="<?php echo date("Y-m-d");?>" value="<?php echo date("Y-m-d");?>" required>
                     </div>
             </div>
         </div>

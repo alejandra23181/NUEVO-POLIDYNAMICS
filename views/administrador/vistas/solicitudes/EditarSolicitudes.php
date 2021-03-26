@@ -91,7 +91,7 @@ include('C:\xampp\htdocs\polidynamics\database\db.php');
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Fecha esperada*:</label><br>   
-                        <input type="date" name="fecha"  class="form-control" value="<?php echo $Filas['FECHA_CREACION'] ?>" required>
+                        <input type="date" name="fecha"  class="form-control" Min="<?php echo date("Y-m-d");?>" value="<?php echo $Filas['FECHA_CREACION'] ?>" required>
 
                     </div>
             </div>
