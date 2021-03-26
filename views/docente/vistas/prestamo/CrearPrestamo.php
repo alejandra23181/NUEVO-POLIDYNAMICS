@@ -14,8 +14,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     $Query = "SELECT *
     FROM PRESTAMO PR
     INNER JOIN USUARIO US ON PR.USUARIO = US.ID_USUARIO
-    INNER JOIN AULA AU ON PR.AULA = AU.ID_AULA
-    INNER JOIN SOLICITUD SO ON PR.SOLICITUD = SO.ID_SOLICITUD WHERE username = '".$_SESSION['username']."'";
+    INNER JOIN AULA AU ON PR.AULA = AU.ID_AULA WHERE username = '".$_SESSION['username']."'";
     $Resultado = mysqli_query($link, $Query);
 ?>
  

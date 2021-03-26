@@ -14,8 +14,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     $id = $_GET['ID_PRESTAMO'];              
     $QuerySQL = "SELECT * FROM PRESTAMO PR
     INNER JOIN USUARIO US ON PR.USUARIO = US.ID_USUARIO
-    INNER JOIN AULA AU ON PR.AULA = AU.ID_AULA
-    INNER JOIN SOLICITUD SO ON PR.SOLICITUD = SO.ID_SOLICITUD WHERE ID_PRESTAMO = '".$id."'";
+    INNER JOIN AULA AU ON PR.AULA = AU.ID_AULA WHERE ID_PRESTAMO = '".$id."'";
     $Resultado = mysqli_query($link, $QuerySQL);
      while($Filas = $Resultado->fetch_assoc()) {	
 ?>
@@ -75,11 +74,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <input type="hidden" name="idprestamo" value="<?php echo $Filas['ID_PRESTAMO'] ?>">
             <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label>Fecha inicio*:</label><br>   
+                        <label>Fecha inicial*:</label><br>   
                         <input type="date" name="fecha_prestamo"  class="form-control" value="<?php echo $Filas['FECHA_PRESTAMO'] ?>" readonly>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label>Fecha esperada prestamo*:</label><br>   
+                        <label>Fecha prestamo*:</label><br>   
                         <input type="date" name="fecha_esperada"  class="form-control" value="<?php echo $Filas['FECHA_PRESTAMO_ESPERADA'] ?>">
                     </div>
             </div>

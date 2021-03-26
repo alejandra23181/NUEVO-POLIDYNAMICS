@@ -14,8 +14,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   $Query = "SELECT *
 	FROM PRESTAMO PR
 	INNER JOIN USUARIO US ON PR.USUARIO = US.ID_USUARIO
-	INNER JOIN AULA AU ON PR.AULA = AU.ID_AULA
-  INNER JOIN SOLICITUD SO ON PR.SOLICITUD = SO.ID_SOLICITUD WHERE username = '".$_SESSION['username']."'";
+	INNER JOIN AULA AU ON PR.AULA = AU.ID_AULA WHERE username = '".$_SESSION['username']."'";
 	$Resultado = mysqli_query($link, $Query);
 ?>
  
@@ -77,13 +76,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th scope="col">Fecha del prestamo</th>
-				<th scope="col">Fecha del prestamo esperada</th>
-				<th scope="col">Hora incio</th>
+				<th scope="col">Fecha inicial</th>
+				<th scope="col">Fecha prestamo</th>
+				<th scope="col">Hora inicio</th>
 				<th scope="col">Hora fin</th>
 				<th scope="col">Usuario</th>
 				<th scope="col">Aula</th>
-        <th scope="col">Solicitud</th>
         <th scope="col">Acciones</th>
 			</tr>
 		</thead>
@@ -98,7 +96,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 <td><?php echo $Filas['HORA_FIN'] ?></td>
                 <td><?php echo $Filas['PRIMER_NOMBRE_USUARIO'] ?></td>
                 <td><?php echo $Filas['NUMERO_AULA'] ?></td>
-                <td><?php echo $Filas['DESCRIPCION'] ?></td>
 				<td>
 					<button type="button" class="btn btn-primary" ><a href="EditarPrestamos.php?ID_PRESTAMO=<?php echo $Filas['ID_PRESTAMO'] ?>">Modificar</a></button>
 					<button type="button" class="btn btn-danger" ><a href="metodos/MetodoEliminar.php?ID_PRESTAMO=<?php echo $Filas['ID_PRESTAMO'] ?>">Desactivar</a></button>			
