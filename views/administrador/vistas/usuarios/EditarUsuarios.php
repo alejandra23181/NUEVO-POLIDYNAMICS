@@ -99,7 +99,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <div class="row">
                     <div class="col-md-6 mb-3">
                         <label>Télefono:</label><br>   
-                        <input type="text" name="TELEFONO"  class="form-control" value="<?php echo $Filas['TELEFONO'] ?>">
+                        <input type="tel" name="TELEFONO" title="El rango permitido para este cambo es entre 7 y 10" pattern="^@?(\w){7,10}$"  class="form-control" value="<?php echo $Filas['TELEFONO'] ?>">
 
                     </div>
                     <div class="col-md-6 mb-3">

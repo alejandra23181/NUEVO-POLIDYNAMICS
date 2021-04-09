@@ -115,8 +115,7 @@ $ejecutar = mysqli_query($link,$Query);
             <div class="row">
             <div class="col-md-6 mb-3">
             <label for="TELEFONO">Teléfono*:</label><br>
-            <input class="form-control" type="number" name="TELEFONO" value="" placeholder="" required>
-            
+            <input class="form-control" type="tel" name="TELEFONO" value="" placeholder="" title="El rango permitido para este cambo es entre 7 y 10" pattern="^@?(\w){7,10}$">            
             </div>
 
             <div class="col-md-6 mb-3">

@@ -83,7 +83,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Cantidad:</label><br>   
-                        <input type="text" class="form-control" name="cantidad" value="<?php echo $Filas['CANTIDAD'] ?>">
+                        <input type="text" class="form-control" name="cantidad" max="99" value="<?php echo $Filas['CANTIDAD'] ?>">
 
                     </div>
             </div>

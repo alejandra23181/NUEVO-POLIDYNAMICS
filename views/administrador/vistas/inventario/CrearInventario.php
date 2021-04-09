@@ -84,8 +84,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Cantidad*:</label><br>   
-                        <input type="number" class="form-control" name="cantidad" required>
-                    </div>
+                        <input type="number" class="form-control" name="cantidad" max="99" required>                    </div>
             </div>
         </div>
 
