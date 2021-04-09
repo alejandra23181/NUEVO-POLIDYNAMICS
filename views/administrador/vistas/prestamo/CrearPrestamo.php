@@ -105,9 +105,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="form-group">
             <div class="row">
                     <div class="col-md-6 mb-3">
-                    <label>Aula:</label><br>
+                    <label>Aula*:</label><br>
                     <select name="aula" class="form-control" required>
-                        <option value="0">Seleccione una de las opciones*:</option>
+                        <option value="0">Seleccione una de las opciones:</option>
                         <?php 
                             $Query = "SELECT * FROM AULA WHERE DISPONIBILIDAD='1'";
                             $Resultado = mysqli_query($link, $Query);

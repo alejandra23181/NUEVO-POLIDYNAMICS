@@ -81,7 +81,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <div class="row">
             <div class="col-md-6 mb-3">
                         <label>Bloque*:</label><br>   
-                        <input type="text" class="form-control" name="BLOQUE" required>
+                        <select name="BLOQUE" class="form-control"required>
+                   <option value="P13">P13</option>
+                   <option value="P17">P17</option>
+                   <option value="P38">P38</option>
+
+                </select>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Número aula*:</label><br>   
