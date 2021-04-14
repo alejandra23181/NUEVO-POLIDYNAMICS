@@ -68,29 +68,29 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <th scope="col">Nombre del reporte</th>
 			</tr>
 		</thead>
-		<tbody>
+    <tbody>
 			<tr>
-				<td style="text-align: center;">Número de solucitudes realizadas en vida útil de la plataforma</td>
-				<td style="width: 10px;"><button type="button" class="btn btn-danger">PDF</button></td>
+				<td style="text-align: center;">Solucitudes realizadas en vida útil de la plataforma</td>
+				<td style="width: 10px;"><a href="\PoliDynamics\files\reportes-admin\Reporte-1.php"><button type="button" class="btn btn-danger">PDF</button></td>
       </tr>
       
       <tr>
-				<td style="text-align: center;">Número de solucitudes reportadas y solucionadas</td>
-				<td style="width: 10px;"><button type="button" class="btn btn-danger">PDF</button></td>
+				<td style="text-align: center;">Solucitudes reportadas y solucionadas</td>
+				<td style="width: 10px;"><a href="\PoliDynamics\files\reportes-admin\Reporte-2.php"><button type="button" class="btn btn-danger">PDF</button></td>
       </tr>
       
       <tr>
-				<td style="text-align: center;">Número de solucitudes reportadas por sala</td>
+				<td style="text-align: center;">Solucitudes reportadas por sala</td>
 				<td style="width: 10px;"><button type="button" class="btn btn-danger">PDF</button></td>
       </tr>
 
       <tr>
-				<td style="text-align: center;">Reportes de movientos realizados en vida útil de la plataforma</td>
+				<td style="text-align: center;">Reporte de daños de equipos</td>
 				<td style="width: 10px;"><button type="button" class="btn btn-danger">PDF</button></td>
       </tr>
 
       <tr>
-				<td style="text-align: center;">Reportes de cada solucitud creada</td>
+				<td style="text-align: center;">Movientos realizados en vida útil de la plataforma</td>
 				<td style="width: 10px;"><button type="button" class="btn btn-danger">PDF</button></td>
       </tr>
       
