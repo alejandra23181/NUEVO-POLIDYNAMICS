@@ -24,10 +24,10 @@ $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',12);
 $pdf->Cell(40,6,'',0,0,'C');
-$pdf->Cell(100,6, utf8_decode('Solicitudes realizadas en la vida útil de la plataforma'),0,0,'C');
+$pdf->Cell(100,6, utf8_decode('Solucitudes reportadas por sala'),0,0,'C');
 $pdf->Ln(10);
 
-$pdf->SetTitle('Solicitudes realizadas en la vida útil de la plataforma');
+$pdf->SetTitle('Solucitudes reportadas por sala');
 
 $pdf->setFillColor(232, 232, 232);
 $pdf->setFont('Arial', 'B', 12);
@@ -35,8 +35,8 @@ $pdf->Cell(30, 6, 'Id. Solicitud', 1, 0, 'C', 1);
 $pdf->Cell(60, 6, utf8_decode('Descripción'), 1, 0, 'C', 1);
 $pdf->Cell(40, 6, utf8_decode('Fecha de creación'), 1, 0, 'C', 1);
 $pdf->Cell(15, 6, utf8_decode('Hora'), 1, 0, 'C', 1);
-$pdf->Cell(20, 6, utf8_decode('Estado'), 1, 0, 'C', 1);
-$pdf->Cell(20, 6, utf8_decode('Usuario'), 1, 1, 'C', 1);
+$pdf->Cell(20, 6, utf8_decode('Bloque'), 1, 0, 'C', 1);
+$pdf->Cell(20, 6, utf8_decode('Aula'), 1, 1, 'C', 1);
 
 $pdf->setFont('Arial', '', 10);
 
@@ -45,8 +45,8 @@ while($fila = $resultado->fetch_assoc()) {
     $pdf->Cell(60, 6, utf8_decode($fila['DESCRIPCION']), 1, 0, 'C');
     $pdf->Cell(40, 6, utf8_decode($fila['FECHA_CREACION']), 1, 0, 'C');
     $pdf->Cell(15, 6, utf8_decode($fila['HORA']), 1, 0, 'C');
-	$pdf->Cell(20, 6, utf8_decode($fila['DESCRIPCION_ESTADO']), 1, 0, 'C');
-    $pdf->Cell(20, 6, utf8_decode($fila['PRIMER_NOMBRE_USUARIO']), 1, 0, 'C');
+	$pdf->Cell(20, 6, utf8_decode($fila['BLOQUE']), 1, 0, 'C');
+    $pdf->Cell(20, 6, utf8_decode($fila['NUMERO_AULA']), 1, 1, 'C');
 }
 
 $pdf->Output();
