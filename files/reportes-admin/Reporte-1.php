@@ -46,7 +46,7 @@ while($fila = $resultado->fetch_assoc()) {
     $pdf->Cell(40, 6, utf8_decode($fila['FECHA_CREACION']), 1, 0, 'C');
     $pdf->Cell(15, 6, utf8_decode($fila['HORA']), 1, 0, 'C');
 	$pdf->Cell(20, 6, utf8_decode($fila['DESCRIPCION_ESTADO']), 1, 0, 'C');
-    $pdf->Cell(20, 6, utf8_decode($fila['PRIMER_NOMBRE_USUARIO']), 1, 0, 'C');
+    $pdf->Cell(20, 6, utf8_decode($fila['PRIMER_NOMBRE_USUARIO']), 1, 1, 'C');
 }
 
 $pdf->Output();
