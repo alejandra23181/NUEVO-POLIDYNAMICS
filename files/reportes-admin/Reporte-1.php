@@ -24,10 +24,10 @@ $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',12);
 $pdf->Cell(40,6,'',0,0,'C');
-$pdf->Cell(100,6, utf8_decode('Solicitudes realizadas en la vida útil de la plataforma'),0,0,'C');
+$pdf->Cell(100,6, utf8_decode('Solicitudes realizadas en la vida útil de la plataforma semestralmente'),0,0,'C');
 $pdf->Ln(10);
 
-$pdf->SetTitle('Solicitudes realizadas en la vida útil de la plataforma');
+$pdf->SetTitle('Solicitudes realizadas en la vida útil de la plataforma semestralmente');
 
 $pdf->setFillColor(232, 232, 232);
 $pdf->setFont('Arial', 'B', 12);

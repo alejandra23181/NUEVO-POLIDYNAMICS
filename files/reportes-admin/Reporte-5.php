@@ -21,10 +21,10 @@ $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',12);
 $pdf->Cell(40,6,'',0,0,'C');
-$pdf->Cell(100,6, utf8_decode('Reporte de daños de equipos'),0,0,'C');
+$pdf->Cell(100,6, utf8_decode('Movientos realizados en vida útil de la plataforma semestralmente'),0,0,'C');
 $pdf->Ln(10);
 
-$pdf->SetTitle('Reporte de danos de equipos');
+$pdf->SetTitle('Movientos realizados en vida útil de la plataforma semestralmente');
 
 $pdf->setFillColor(232, 232, 232);
 $pdf->setFont('Arial', 'B', 12);

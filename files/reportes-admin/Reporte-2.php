@@ -26,10 +26,10 @@ $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',12);
 $pdf->Cell(40,6,'',0,0,'C');
-$pdf->Cell(100,6, utf8_decode('Solucitudes reportadas y solucionadas'),0,0,'C');
+$pdf->Cell(100,6, utf8_decode('Solucitudes reportadas y solucionadas semestralmente'),0,0,'C');
 $pdf->Ln(10);
 
-$pdf->SetTitle('Solucitudes reportadas y solucionadas');
+$pdf->SetTitle('Solucitudes reportadas y solucionadas semestralmente');
 
 $pdf->setFillColor(232, 232, 232);
 $pdf->setFont('Arial', 'B', 12);
