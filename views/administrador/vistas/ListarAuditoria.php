@@ -71,7 +71,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </div>
   </div>
 
-  <h1>SEGUIMIENTO DE MOVIMIENTOS REALIZADOS</h1>
+  <h1>LOG DE MOVIMIENTOS REALIZADOS</h1>
   <br>
 	<table class="table table-bordered">
 		<thead>

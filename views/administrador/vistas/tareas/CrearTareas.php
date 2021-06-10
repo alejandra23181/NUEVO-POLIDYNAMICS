@@ -94,12 +94,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <div class="row">
                     <div class="col-md-6 mb-3">
                         <label>Fecha inicio*:</label><br>   
-                        <input type="localdate" name="fechainicio"  class="form-control" value="<?php echo date("Y-m-d");?>" readonly>
+                        <input type="localdate" name="fechainicio"  class="form-control" value="<?php date_default_timezone_set('America/Mexico_City'); echo date("Y-m-d");?>" readonly>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <label>Hora inicio*:</label><br>   
-                        <input type="time" max="22:00:00" min="06:00:00"  name="horainicio"  class="form-control" required>
+                        <input type="time" max=<?php date_default_timezone_set('America/Mexico_City'); $time = time();  echo date("H:i:s", $time); ?> min="06:00:00"  name="horainicio"  class="form-control" required>
                     </div>
             </div>
         </div>
@@ -109,7 +109,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label>Hora fin*:</label><br>   
-                    <input type="time" name="horafin"  max="22:00:00" min="06:00:00"  class="form-control" required>
+                    <input type="text" value="<?php date_default_timezone_set('America/Mexico_City'); $time = time();  echo date("H:i:s", $time);?>" name="horafin"  max="22:00:00" min="06:00:00"  class="form-control" readonly>
                 </div>
 
             <div class="col-md-6 mb-3">
