@@ -133,6 +133,11 @@ $username = mysqli_real_escape_string($link,$_POST['username']);
                 <input type="password"   name="password" class="form-control">
                 <span class="help-block"></span>
             </div>
+
+            <div class="form-group ">
+                <a href="\PoliDynamics\views\login\CambioClave.php">Cambiar de contraseña</a>
+            </div>
+
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" style="margin-left: 360px;margin-top: 30px;background: #196844;" value="Ingresar">
             </div>
